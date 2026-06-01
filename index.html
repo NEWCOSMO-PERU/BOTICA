@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Farmacia Salud Total</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f7fa;
+color:#333;
+}
+
+header{
+background:linear-gradient(135deg,#0ea5e9,#10b981);
+color:white;
+padding:100px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:3.5rem;
+margin-bottom:15px;
+}
+
+header p{
+font-size:1.2rem;
+max-width:700px;
+margin:auto;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:15px 30px;
+background:white;
+color:#0ea5e9;
+text-decoration:none;
+border-radius:50px;
+font-weight:bold;
+}
+
+section{
+max-width:1200px;
+margin:auto;
+padding:80px 20px;
+}
+
+.title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.title h2{
+font-size:2.3rem;
+color:#0ea5e9;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.content{
+padding:20px;
+}
+
+.price{
+font-size:1.4rem;
+font-weight:bold;
+color:#10b981;
+margin-top:10px;
+}
+
+.whatsapp-btn{
+display:block;
+margin-top:15px;
+text-align:center;
+padding:12px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.category{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.promo{
+background:linear-gradient(135deg,#10b981,#0ea5e9);
+color:white;
+padding:40px;
+border-radius:20px;
+text-align:center;
+}
+
+.contact{
+background:white;
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.contact p{
+margin:10px 0;
+}
+
+footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.whatsapp-float{
+position:fixed;
+right:20px;
+bottom:20px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+color:white;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+z-index:999;
+}
+
+.search-box{
+max-width:500px;
+margin:30px auto;
+}
+
+.search-box input{
+width:100%;
+padding:15px;
+border:2px solid #ddd;
+border-radius:50px;
+font-size:16px;
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:2.3rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🏥 FARMACIA SALUD TOTAL</h1>
+
+<p>
+Medicamentos de venta libre, cuidado personal, vitaminas y productos para toda la familia.
+</p>
+
+<a href="#productos" class="btn">
+Ver Productos
+</a>
+
+</header>
+
+<section>
+
+<div class="title">
+<h2>🔍 Buscar Producto</h2>
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Buscar producto...">
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>🛍️ Categorías</h2>
+</div>
+
+<div class="categories">
+
+<div class="category">
+💊 Medicamentos OTC
+</div>
+
+<div class="category">
+🧴 Cuidado Personal
+</div>
+
+<div class="category">
+❤️ Vitaminas
+</div>
+
+<div class="category">
+👶 Bebés
+</div>
+
+<div class="category">
+🩹 Primeros Auxilios
+</div>
+
+<div class="category">
+🦷 Higiene Oral
+</div>
+
+</div>
+
+</section>
+
+<section id="productos">
+
+<div class="title">
+<h2>⭐ Productos Destacados</h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800">
+
+<div class="content">
+
+<h3>Vitaminas Multivitamínicas</h3>
+
+<p>Suplemento diario.</p>
+
+<div class="price">
+S/ 29.90
+</div>
+
+<a
+class="whatsapp-btn"
+href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Vitaminas%20Multivitamínicas">
+
+Consultar
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800">
+
+<div class="content">
+
+<h3>Alcohol Antiséptico</h3>
+
+<p>Uso externo.</p>
+
+<div class="price">
+S/ 8.90
+</div>
+
+<a
+class="whatsapp-btn"
+href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Alcohol%20Antiséptico">
+
+Consultar
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800">
+
+<div class="content">
+
+<h3>Kit de Primeros Auxilios</h3>
+
+<p>Ideal para el hogar.</p>
+
+<div class="price">
+S/ 24.90
+</div>
+
+<a
+class="whatsapp-btn"
+href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Kit%20de%20Primeros%20Auxilios">
+
+Consultar
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="promo">
+
+<h2>🎉 Promoción de la Semana</h2>
+
+<p>
+Descuentos especiales en vitaminas y productos de cuidado personal.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>📸 Enviar Foto de Receta</h2>
+</div>
+
+<div class="contact">
+
+<p>
+Si deseas consultar disponibilidad de productos, puedes enviarnos una foto de tu receta por WhatsApp.
+</p>
+
+<br>
+
+<a
+class="btn"
+href="https://wa.me/51999999999?text=Hola,%20deseo%20consultar%20la%20disponibilidad%20de%20productos">
+
+Enviar por WhatsApp
+
+</a>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>📍 Contacto</h2>
+</div>
+
+<div class="contact">
+
+<p>📱 WhatsApp: +51 999 999 999</p>
+
+<p>📧 contacto@farmaciasaludtotal.com</p>
+
+<p>🕒 Lunes a Domingo: 8:00 AM - 10:00 PM</p>
+
+<p>🚚 Delivery disponible</p>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Farmacia Salud Total - Todos los derechos reservados.
+
+</footer>
+
+<a
+class="whatsapp-float"
+href="https://wa.me/51999999999">
+
+💬
+
+</a>
+
+</body>
+</html>
