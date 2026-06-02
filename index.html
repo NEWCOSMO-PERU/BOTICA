@@ -1,433 +1,620 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia Salud Total | Tu Bienestar Nos Importa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<title>Farmacia Salud Total</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0369a1;
+            --secondary: #10b981;
+            --secondary-dark: #047857;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+            --gray-border: #e2e8f0;
+            --whatsapp: #25D366;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        body {
+            background: var(--light);
+            color: var(--text);
+            padding-top: 70px; /* Espacio para la navbar fija */
+        }
 
-html{
-scroll-behavior:smooth;
-}
+        /* --- NAVBAR MEJORADA --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
 
-body{
-background:#f5f7fa;
-color:#333;
-}
+        nav .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-header{
-background:linear-gradient(135deg,#0ea5e9,#10b981);
-color:white;
-padding:100px 20px;
-text-align:center;
-}
+        nav .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
 
-header h1{
-font-size:3.5rem;
-margin-bottom:15px;
-}
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
 
-header p{
-font-size:1.2rem;
-max-width:700px;
-margin:auto;
-}
+        nav .nav-links a:hover {
+            color: var(--primary);
+        }
 
-.btn{
-display:inline-block;
-margin-top:25px;
-padding:15px 30px;
-background:white;
-color:#0ea5e9;
-text-decoration:none;
-border-radius:50px;
-font-weight:bold;
-}
+        /* --- HEADER / HERO --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 90px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-section{
-max-width:1200px;
-margin:auto;
-padding:80px 20px;
-}
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
 
-.title{
-text-align:center;
-margin-bottom:50px;
-}
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-.title h2{
-font-size:2.3rem;
-color:#0ea5e9;
-}
+        header p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: auto;
+            opacity: 0.95;
+            font-weight: 300;
+        }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-}
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 35px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
 
-.card{
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-transition:.3s;
-}
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            background: var(--light);
+        }
 
-.card:hover{
-transform:translateY(-8px);
-}
+        /* --- SECCIONES --- */
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
 
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
 
-.content{
-padding:20px;
-}
+        .title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
 
-.price{
-font-size:1.4rem;
-font-weight:bold;
-color:#10b981;
-margin-top:10px;
-}
+        .title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
 
-.whatsapp-btn{
-display:block;
-margin-top:15px;
-text-align:center;
-padding:12px;
-background:#25D366;
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
-}
+        /* --- BARRA DE BÚSQUEDA --- */
+        .search-box {
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+        }
 
-.categories{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
+        .search-box input {
+            width: 100%;
+            padding: 16px 25px;
+            border: 2px solid var(--gray-border);
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
 
-.category{
-background:white;
-padding:25px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1);
+        }
 
-.promo{
-background:linear-gradient(135deg,#10b981,#0ea5e9);
-color:white;
-padding:40px;
-border-radius:20px;
-text-align:center;
-}
+        .results-count {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
 
-.contact{
-background:white;
-padding:40px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+        /* --- CATEGORÍAS --- */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
 
-.contact p{
-margin:10px 0;
-}
+        .category {
+            background: white;
+            padding: 18px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+            font-weight: 500;
+            user-select: none;
+            font-size: 0.95rem;
+        }
 
-footer{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:30px;
-}
+        .category:hover, .category.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
 
-.whatsapp-float{
-position:fixed;
-right:20px;
-bottom:20px;
-width:65px;
-height:65px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:30px;
-text-decoration:none;
-color:white;
-box-shadow:0 5px 15px rgba(0,0,0,.3);
-z-index:999;
-}
+        /* --- PRODUCTOS (GRID Y TARJETAS) --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
 
-.search-box{
-max-width:500px;
-margin:30px auto;
-}
+        .card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-border);
+            display: flex;
+            flex-direction: column;
+        }
 
-.search-box input{
-width:100%;
-padding:15px;
-border:2px solid #ddd;
-border-radius:50px;
-font-size:16px;
-}
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
 
-@media(max-width:768px){
+        .img-container {
+            width: 100%;
+            height: 230px;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
 
-header h1{
-font-size:2.3rem;
-}
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-}
+        .card:hover img {
+            transform: scale(1.06);
+        }
 
-</style>
+        .content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .content h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .content p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn:hover {
+            background: #1eb855;
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            color: #64748b;
+            font-size: 1.1rem;
+            padding: 40px 20px;
+            display: none;
+        }
+
+        /* --- PROMO --- */
+        .promo {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 50px 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .promo h2 { font-size: 2rem; margin-bottom: 10px; }
+        .promo p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* --- CONTACTO / RECETA --- */
+        .contact-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-border);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .info-item p { margin-top: 5px; font-weight: 500; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* --- BOTÓN FLOTANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+            z-index: 999;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media(max-width:768px){
+            nav { padding: 0 20px; }
+            nav .nav-links { display: none; } /* Ocultar links simples en móvil */
+            header h1 { font-size: 2.2rem; }
+            header p { font-size: 1rem; }
+            body { padding-top: 70px; }
+            section { padding: 35px 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-
-<h1>🏥 FARMACIA SALUD TOTAL</h1>
-
-<p>
-Medicamentos de venta libre, cuidado personal, vitaminas y productos para toda la familia.
-</p>
-
-<a href="#productos" class="btn">
-Ver Productos
-</a>
-
-</header>
-
-<section>
-
-<div class="title">
-<h2>🔍 Buscar Producto</h2>
-</div>
-
-<div class="search-box">
-<input type="text" placeholder="Buscar producto...">
-</div>
-
-</section>
-
-<section>
-
-<div class="title">
-<h2>🛍️ Categorías</h2>
-</div>
-
-<div class="categories">
-
-<div class="category">
-💊 Medicamentos OTC
-</div>
-
-<div class="category">
-🧴 Cuidado Personal
-</div>
-
-<div class="category">
-❤️ Vitaminas
-</div>
-
-<div class="category">
-👶 Bebés
-</div>
-
-<div class="category">
-🩹 Primeros Auxilios
-</div>
-
-<div class="category">
-🦷 Higiene Oral
-</div>
-
-</div>
-
-</section>
-
-<section id="productos">
-
-<div class="title">
-<h2>⭐ Productos Destacados</h2>
-</div>
-
-<div class="grid">
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800">
-
-<div class="content">
-
-<h3>Vitaminas Multivitamínicas</h3>
-
-<p>Suplemento diario.</p>
-
-<div class="price">
-S/ 29.90
-</div>
-
-<a
-class="whatsapp-btn"
-href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Vitaminas%20Multivitamínicas">
-
-Consultar
-
-</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800">
-
-<div class="content">
-
-<h3>Alcohol Antiséptico</h3>
-
-<p>Uso externo.</p>
-
-<div class="price">
-S/ 8.90
-</div>
-
-<a
-class="whatsapp-btn"
-href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Alcohol%20Antiséptico">
-
-Consultar
-
-</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800">
-
-<div class="content">
-
-<h3>Kit de Primeros Auxilios</h3>
-
-<p>Ideal para el hogar.</p>
-
-<div class="price">
-S/ 24.90
-</div>
-
-<a
-class="whatsapp-btn"
-href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Kit%20de%20Primeros%20Auxilios">
-
-Consultar
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="promo">
-
-<h2>🎉 Promoción de la Semana</h2>
-
-<p>
-Descuentos especiales en vitaminas y productos de cuidado personal.
-</p>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="title">
-<h2>📸 Enviar Foto de Receta</h2>
-</div>
-
-<div class="contact">
-
-<p>
-Si deseas consultar disponibilidad de productos, puedes enviarnos una foto de tu receta por WhatsApp.
-</p>
-
-<br>
-
-<a
-class="btn"
-href="https://wa.me/51999999999?text=Hola,%20deseo%20consultar%20la%20disponibilidad%20de%20productos">
-
-Enviar por WhatsApp
-
-</a>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="title">
-<h2>📍 Contacto</h2>
-</div>
-
-<div class="contact">
-
-<p>📱 WhatsApp: +51 999 999 999</p>
-
-<p>📧 contacto@farmaciasaludtotal.com</p>
-
-<p>🕒 Lunes a Domingo: 8:00 AM - 10:00 PM</p>
-
-<p>🚚 Delivery disponible</p>
-
-</div>
-
-</section>
-
-<footer>
-
-© 2026 Farmacia Salud Total - Todos los derechos reservados.
-
-</footer>
-
-<a
-class="whatsapp-float"
-href="https://wa.me/51999999999">
-
-💬
-
-</a>
-
+    <!-- MENÚ DE NAVEGACIÓN FIJO -->
+    <nav>
+        <a href="#" class="logo">🏥 Farmacia Salud Total</a>
+        <ul class="nav-links">
+            <li><a href="#buscar">Buscar</a></li>
+            <li><a href="#categorias">Categorías</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#receta">Enviar Receta</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO / BIENVENIDA -->
+    <header>
+        <h1>FARMACIA SALUD TOTAL</h1>
+        <p>Medicamentos de venta libre, cuidado personal, vitaminas y productos de confianza para toda tu familia.</p>
+        <a href="#productos" class="btn">Ver Catálogo</a>
+    </header>
+
+    <!-- BUSCADOR -->
+    <section id="buscar">
+        <div class="title">
+            <h2>🔍 Buscar Producto</h2>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Escribe el producto que necesitas...">
+        </div>
+        <p class="results-count" id="results-count">Mostrando todos los productos</p>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section id="categorias">
+        <div class="title">
+            <h2>🛍️ Categorías</h2>
+        </div>
+        <div class="categories">
+            <div class="category active" data-cat="all">✨ Todos</div>
+            <div class="category" data-cat="otc">💊 Medicamentos OTC</div>
+            <div class="category" data-cat="personal">🧴 Cuidado Personal</div>
+            <div class="category" data-cat="vitaminas">❤️ Vitaminas</div>
+            <div class="category" data-cat="bebes">👶 Bebés</div>
+            <div class="category" data-cat="auxilios">🩹 Primeros Auxilios</div>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos">
+        <div class="title">
+            <h2>⭐ Productos Destacados</h2>
+        </div>
+        
+        <div class="grid" id="products-grid">
+            
+            <!-- Producto 1 -->
+            <div class="card" data-category="vitaminas">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800" alt="Vitaminas">
+                </div>
+                <div class="content">
+                    <h3>Vitaminas Multivitamínicas</h3>
+                    <p>Suplemento diario para mejorar tus defensas y energía.</p>
+                    <div class="price">S/ 29.90</div>
+                    <a class="whatsapp-btn" href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Vitaminas%20Multivitamínicas">💬 Consultar</a>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="card" data-category="auxilios">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800" alt="Alcohol">
+                </div>
+                <div class="content">
+                    <h3>Alcohol Antiséptico</h3>
+                    <p>Uso externo. Ideal para desinfección y primeros auxilios.</p>
+                    <div class="price">S/ 8.90</div>
+                    <a class="whatsapp-btn" href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Alcohol%20Antiséptico">💬 Consultar</a>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="card" data-category="auxilios">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Kit Auxilio">
+                </div>
+                <div class="content">
+                    <h3>Kit de Primeros Auxilios</h3>
+                    <p>Completo y compacto, ideal para emergencias en el hogar o auto.</p>
+                    <div class="price">S/ 24.90</div>
+                    <a class="whatsapp-btn" href="https://wa.me/51999999999?text=Hola,%20quiero%20consultar%20por%20Kit%20de%20Primeros%20Auxilios">💬 Consultar</a>
+                </div>
+            </div>
+
+            <!-- Mensaje de no resultados -->
+            <div class="no-results" id="no-results-msg">❌ No encontramos productos con ese nombre. ¡Escríbenos para consultar stock!</div>
+
+        </div>
+    </section>
+
+    <!-- PROMOCIÓN -->
+    <section>
+        <div class="promo">
+            <h2>🎉 Promoción de la Semana</h2>
+            <p>Aprovecha hasta un 20% de descuento en categorías seleccionadas de Vitaminas y Cuidado Personal.</p>
+        </div>
+    </section>
+
+    <!-- RECETA -->
+    <section id="receta">
+        <div class="title">
+            <h2>📸 Enviar Foto de Receta</h2>
+        </div>
+        <div class="contact-card">
+            <p style="margin-bottom: 20px; color: #475569;">
+                ¿Tienes una receta médica? No busques más. Sube o toma una foto de tu receta y envíanosla por WhatsApp para cotizar tus medicamentos de inmediato.
+            </p>
+            <a class="btn" style="background: var(--primary); color: white; margin-top: 10px;" href="https://wa.me/51999999999?text=Hola,%20deseo%20enviar%20una%20foto%20de%20mi%20receta%20para%20cotizar.">
+                📲 Enviar Receta por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <div class="title">
+            <h2>📍 Contacto y Horarios</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="info-item">
+                <span>📱 WhatsApp</span>
+                <p>+51 999 999 999</p>
+            </div>
+            <div class="info-item">
+                <span>🕒 Horario de Atención</span>
+                <p>Lun a Dom: 8:00 AM - 10:00 PM</p>
+            </div>
+            <div class="info-item">
+                <span>🚚 Delivery Express</span>
+                <p>Disponible para tu zona</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Farmacia Salud Total. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a class="whatsapp-float" href="https://wa.me/51999999999" title="Escríbenos">💬</a>
+
+    <!-- JAVASCRIPT INTEGRADO (Buscador y Filtro Inteligente) -->
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const cards = document.querySelectorAll('.card');
+        const categories = document.querySelectorAll('.category');
+        const noResultsMsg = document.getElementById('no-results-msg');
+        const resultsCount = document.getElementById('results-count');
+
+        let activeCategory = 'all';
+
+        function filterProducts() {
+            const searchText = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                const productCategory = card.getAttribute('data-category');
+
+                const matchesSearch = productName.includes(searchText);
+                const matchesCategory = (activeCategory === 'all' || productCategory === activeCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = "flex";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // Actualizar contador
+            if(searchText !== "" || activeCategory !== 'all') {
+                resultsCount.textContent = `Se encontraron ${visibleCount} producto(s)`;
+            } else {
+                resultsCount.textContent = "Mostrando todos los productos";
+            }
+
+            // Mostrar u ocultar mensaje vacío
+            noResultsMsg.style.display = (visibleCount === 0) ? "block" : "none";
+        }
+
+        searchInput.addEventListener('input', filterProducts);
+
+        categories.forEach(categoryButton => {
+            categoryButton.addEventListener('click', () => {
+                categories.forEach(btn => btn.classList.remove('active'));
+                categoryButton.classList.add('active');
+
+                activeCategory = categoryButton.getAttribute('data-cat');
+                filterProducts();
+
+                // Scroll suave al catálogo en móviles para mejor experiencia
+                if(window.innerWidth < 768) {
+                    document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
