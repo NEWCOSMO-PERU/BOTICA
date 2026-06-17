@@ -192,9 +192,9 @@
         .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
         .cart-item-price { color: var(--secondary); font-weight: 700; font-size: 0.9rem; }
         
-        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: var(--light); border: 1px solid var(--gray-border); border-radius: 8px; padding: 4px 8px; }
-        .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1rem; padding: 0 4px; }
-        .cart-qty-num { font-size: 0.88rem; font-weight: 600; min-width: 16px; text-align: center; }
+        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: var(--light); border: 1px solid var(--gray-border); border-radius: 8px; padding: 6px 12px; }
+        .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.2rem; padding: 0 8px; min-width: 25px; text-align: center; }
+        .cart-qty-num { font-size: 0.95rem; font-weight: 600; min-width: 20px; text-align: center; }
 
         /* --- SECCIÓN CUPONES --- */
         .coupon-container { padding: 12px 25px; border-top: 1px solid var(--gray-border); background: #ffffff; display: flex; gap: 10px; }
@@ -291,7 +291,7 @@
 <body>
 
     <nav>
-        <a href="#" class="logo"><i class="fa-solid fa-heart-pulse text-primary" style="color:var(--primary)"></i> Salud<span>Total</span></a>
+        <a href="#" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--primary)"></i> Salud<span>Total</span></a>
         <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
         <ul class="nav-links" id="nav-list">
             <li><a href="#buscar">Buscador</a></li>
@@ -482,8 +482,8 @@
         <div class="cart-form-container">
             <div class="cart-form-title"><i class="fa-solid fa-truck-ramped"></i> Detalles de Despacho</div>
             <div class="form-grid">
-                <input type="text" id="cust-name" placeholder="Nombre de quien recibe" class="form-input">
-                <input type="text" id="cust-address" placeholder="Dirección exacta de entrega" class="form-input">
+                <input type="text" id="cust-name" placeholder="Nombre de quien recibe" class="form-input" required>
+                <input type="text" id="cust-address" placeholder="Dirección exacta de entrega" class="form-input" required>
                 <select id="cust-payment" class="form-input">
                     <option value="Yape / Plin">Pago Digital (Yape / Plin)</option>
                     <option value="Efectivo contraentrega">Efectivo contraentrega</option>
@@ -529,8 +529,15 @@
         const navList = document.getElementById('nav-list');
         menuToggle.addEventListener('click', () => navList.classList.toggle('active'));
 
-        // Gestión del Estado Persistente del Carrito
-        let cart = JSON.parse(localStorage.getItem('saludtotal_cart')) || [];
+        // Gestión Segura del Estado Persistente del Carrito (Defensa ante localStorage corrupto)
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem('saludtotal_cart')) || [];
+            if (!Array.isArray(cart)) cart = [];
+        } catch (e) {
+            cart = [];
+        }
+        
         let discountRate = 0;
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -554,13 +561,18 @@
         function addToCart(name, price, buttonNode) {
             const existingItem = cart.find(item => item.name === name);
             if(existingItem) {
-                existingItem.qty += 1;
+                if(existingItem.qty < 99) { // Límite lógico de stock por ítem
+                    existingItem.qty += 1;
+                } else {
+                    alert("Has alcanzado el límite máximo permitido para este producto.");
+                    return;
+                }
             } else {
                 cart.push({ name, price, qty: 1 });
             }
             saveAndUpdateCart();
             
-            // Animación y respuesta UX Premium en el botón clicado
+            // Animación y respuesta UX Premium en el botón
             if(buttonNode) {
                 const originalHTML = buttonNode.innerHTML;
                 buttonNode.innerHTML = `<i class="fa-solid fa-check"></i> ¡Agregado!`;
@@ -576,6 +588,7 @@
             const item = cart.find(i => i.name === name);
             if(item) {
                 item.qty += change;
+                if(item.qty > 99) item.qty = 99; // Protección de desbordamiento
                 if(item.qty <= 0) {
                     cart = cart.filter(i => i.name !== name);
                 }
@@ -584,7 +597,11 @@
         }
 
         function saveAndUpdateCart() {
-            localStorage.setItem('saludtotal_cart', JSON.stringify(cart));
+            try {
+                localStorage.setItem('saludtotal_cart', JSON.stringify(cart));
+            } catch (e) {
+                console.error("No se pudo guardar en localStorage", e);
+            }
             updateCartUI();
         }
 
@@ -653,21 +670,28 @@
             
             totalVal.textContent = `S/ ${total.toFixed(2)}`;
             
-            // Efecto pop en el badge del carrito
             badge.style.transform = 'scale(1.2)';
             setTimeout(() => badge.style.transform = 'scale(1)', 200);
         }
 
-        // MOTOR DE ENVÍO DE DATOS AVANZADO A WHATSAPP
+        // Sanitización estricta de textos para prevenir roturas de formato en WhatsApp
+        function sanitizeInput(str) {
+            return str.replace(/[&<>"'/\\*_\n]/g, '').trim();
+        }
+
+        // ENVIAR DATOS A WHATSAPP Y LIMPIEZA POST-COMPRA
         function sendCartToWhatsApp() {
             if(cart.length === 0) {
                 alert("Por favor, agrega al menos un producto a tu lista.");
                 return;
             }
 
-            const name = document.getElementById('cust-name').value.trim();
-            const address = document.getElementById('cust-address').value.trim();
+            const rawName = document.getElementById('cust-name').value;
+            const rawAddress = document.getElementById('cust-address').value;
             const payment = document.getElementById('cust-payment').value;
+
+            const name = sanitizeInput(rawName);
+            const address = sanitizeInput(rawAddress);
 
             if(!name || !address) {
                 alert("Por favor complete los datos de entrega (Nombre y Dirección) antes de enviar su pedido.");
@@ -703,7 +727,22 @@
 
             const encodedMessage = encodeURIComponent(message);
             const phoneNumber = "51999999999"; 
+            
             window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+
+            // Flujo de Limpieza Post-Envío: Resetea el carrito tras despachar
+            setTimeout(() => {
+                if(confirm("¿Tu ventana de WhatsApp abrió correctamente? Haz clic en Aceptar para limpiar tu lista actual.")) {
+                    cart = [];
+                    discountRate = 0;
+                    document.getElementById('coupon-code').value = "";
+                    document.getElementById('coupon-msg').style.display = "none";
+                    document.getElementById('cust-name').value = "";
+                    document.getElementById('cust-address').value = "";
+                    saveAndUpdateCart();
+                    closeCart();
+                }
+            }, 1000);
         }
 
         // CONTROLADOR DE FILTRADO CON PRECIOS Y CATEGORÍAS
@@ -771,7 +810,7 @@
             });
         });
 
-        // SIMULADOR SOCIAL PROOF (NOTIFICACIONES DINÁMICAS PREMIUM)
+        // SIMULADOR SOCIAL PROOF (NOTIFICACIONES DINÁMICAS)
         const users = ["Alejandro M. de San Isidro", "Rosa P. de Miraflores", "Juan C. de Trujillo", "Beatriz L. de Surco"];
         const actions = ["pidió Vitaminas Multivitamínicas", "solicitó cotización de Receta Médica", "añadió Alcohol Antiséptico 70°", "compró Kit de Primeros Auxilios Pro"];
 
@@ -780,13 +819,15 @@
             const userEl = document.getElementById('sp-user');
             const actionEl = document.getElementById('sp-action');
 
+            if (!toast) return;
+
             const randomUser = users[Math.floor(Math.random() * users.length)];
             const randomAction = actions[Math.floor(Math.random() * actions.length)];
 
             userEl.textContent = randomUser;
             actionEl.textContent = randomAction;
 
-            toast.show ? toast.classList.add('show') : toast.classList.add('show');
+            toast.classList.add('show');
 
             setTimeout(() => {
                 toast.classList.remove('show');
