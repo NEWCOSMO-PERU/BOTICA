@@ -43,7 +43,7 @@
         nav {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 70px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
             z-index: 1000;
@@ -70,7 +70,7 @@
         nav .nav-links a:hover::after { width: 100%; }
         nav .nav-links a:hover { color: var(--primary); }
 
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--dark); background: none; border: none; }
 
         /* --- BOTON NAV CART --- */
         .cart-nav-btn {
@@ -121,7 +121,7 @@
             padding: 15px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
             border: 1px solid var(--gray-border);
         }
-        .price-filter-box input { width: 100%; accent-color: var(--primary); margin-top: 8px; }
+        .price-filter-box input { width: 100%; accent-color: var(--primary); margin-top: 8px; cursor: pointer; }
 
         /* --- CATEGORÍAS GRID --- */
         .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
@@ -168,10 +168,11 @@
         }
         .add-cart-btn:hover { background: var(--primary-dark); }
 
-        /* --- COPIED NO RESULTS --- */
+        /* --- NO RESULTS --- */
         .no-results {
             text-align: center; grid-column: 1 / -1; color: #64748b; padding: 50px 20px; display: none;
         }
+        .results-count { text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 15px; }
 
         /* --- SIDEBAR PANEL CARRITO PRO --- */
         .cart-sidebar {
@@ -182,19 +183,19 @@
         .cart-sidebar.open { right: 0; }
         
         .cart-header { padding: 25px; border-bottom: 1px solid var(--gray-border); display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h2 { font-size: 1.3rem; font-weight: 700; }
+        .cart-header h2 { font-size: 1.3rem; font-weight: 700; color: var(--dark); }
         .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text); border: none; background: none; }
         
         .cart-items-container { flex-grow: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
         
         .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px; }
         .cart-item-info { flex-grow: 1; }
-        .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+        .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; color: var(--dark); }
         .cart-item-price { color: var(--secondary); font-weight: 700; font-size: 0.9rem; }
         
         .cart-item-controls { display: flex; align-items: center; gap: 10px; background: var(--light); border: 1px solid var(--gray-border); border-radius: 8px; padding: 6px 12px; }
         .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.2rem; padding: 0 8px; min-width: 25px; text-align: center; }
-        .cart-qty-num { font-size: 0.95rem; font-weight: 600; min-width: 20px; text-align: center; }
+        .cart-qty-num { font-size: 0.95rem; font-weight: 600; min-width: 20px; text-align: center; color: var(--dark); }
 
         /* --- SECCIÓN CUPONES --- */
         .coupon-container { padding: 12px 25px; border-top: 1px solid var(--gray-border); background: #ffffff; display: flex; gap: 10px; }
@@ -254,7 +255,7 @@
         }
         .prescription-box .btn-prescription:hover { background: var(--primary-dark); transform: translateY(-3px); }
 
-        /* --- TESTIMONIALS & FAQs --- */
+        /* --- TESTIMONIALS & FAQS --- */
         .testimonials { background: #ffffff; border-top: 1px solid var(--gray-border); border-bottom: 1px solid var(--gray-border); }
         .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .test-card { background: var(--light); border: 1px solid var(--gray-border); padding: 30px; border-radius: 20px; }
@@ -291,16 +292,16 @@
 <body>
 
     <nav>
-        <a href="#" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--primary)"></i> Salud<span>Total</span></a>
-        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
+        <a href="#" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--primary)" aria-hidden="true"></i> Salud<span>Total</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Abrir menú de navegación"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
         <ul class="nav-links" id="nav-list">
             <li><a href="#buscar">Buscador</a></li>
             <li><a href="#categorias">Categorías</a></li>
             <li><a href="#productos">Productos</a></li>
             <li><a href="#receta">Recetas</a></li>
         </ul>
-        <button class="cart-nav-btn" id="open-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i> Pedido
+        <button class="cart-nav-btn" id="open-cart-btn" aria-label="Abrir carrito de compras">
+            <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> Pedido
             <span class="cart-count" id="cart-badge">0</span>
         </button>
     </nav>
@@ -315,7 +316,7 @@
         <div class="controls-wrapper">
             <div class="search-area">
                 <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                     <input type="text" id="search-input" placeholder="¿Qué medicamento o producto buscas?">
                 </div>
                 <div class="instant-tags">
@@ -335,11 +336,11 @@
 
     <section id="categorias" style="padding-top:0">
         <div class="categories">
-            <div class="category active" data-cat="all"><i class="fa-solid fa-border-all"></i>Todos</div>
-            <div class="category" data-cat="otc"><i class="fa-solid fa-capsules"></i>Medicamentos</div>
-            <div class="category" data-cat="personal"><i class="fa-solid fa-pump-soap"></i>Cuidado Personal</div>
-            <div class="category" data-cat="vitaminas"><i class="fa-solid fa-heart-pulse"></i>Vitaminas</div>
-            <div class="category" data-cat="auxilios"><i class="fa-solid fa-kit-medical"></i>Primeros Auxilios</div>
+            <div class="category active" data-cat="all"><i class="fa-solid fa-border-all" aria-hidden="true"></i>Todos</div>
+            <div class="category" data-cat="otc"><i class="fa-solid fa-capsules" aria-hidden="true"></i>Medicamentos</div>
+            <div class="category" data-cat="personal"><i class="fa-solid fa-pump-soap" aria-hidden="true"></i>Cuidado Personal</div>
+            <div class="category" data-cat="vitaminas"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>Vitaminas</div>
+            <div class="category" data-cat="auxilios"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i>Primeros Auxilios</div>
         </div>
     </section>
 
@@ -349,7 +350,7 @@
             <div class="card" data-category="vitaminas" data-price="29.90">
                 <div class="badge-promo">Top Ventas</div>
                 <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800" alt="Vitaminas Multivitamínicas">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800" alt="Vitaminas Multivitamínicas" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Vitaminas Multivitamínicas</h3>
@@ -358,14 +359,14 @@
                         <div class="price">S/ 29.90</div>
                     </div>
                     <button class="add-cart-btn" onclick="addToCart('Vitaminas Multivitamínicas', 29.90, this)">
-                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir al Pedido
                     </button>
                 </div>
             </div>
 
             <div class="card" data-category="auxilios" data-price="8.90">
                 <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800" alt="Alcohol Antiséptico">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800" alt="Alcohol Antiséptico" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Alcohol Antiséptico 70°</h3>
@@ -374,14 +375,14 @@
                         <div class="price">S/ 8.90</div>
                     </div>
                     <button class="add-cart-btn" onclick="addToCart('Alcohol Antiséptico 70°', 8.90, this)">
-                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir al Pedido
                     </button>
                 </div>
             </div>
 
             <div class="card" data-category="auxilios" data-price="24.90">
                 <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Kit de Primeros Auxilios">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Kit de Primeros Auxilios" loading="lazy">
                 </div>
                 <div class="content">
                     <h3>Kit de Primeros Auxilios Pro</h3>
@@ -390,13 +391,13 @@
                         <div class="price">S/ 24.90</div>
                     </div>
                     <button class="add-cart-btn" onclick="addToCart('Kit de Primeros Auxilios Pro', 24.90, this)">
-                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir al Pedido
                     </button>
                 </div>
             </div>
 
             <div class="no-results" id="no-results-msg">
-                <i class="fa-solid fa-magnifying-glass-minus" style="font-size:2.5rem; color:var(--primary); margin-bottom:10px"></i>
+                <i class="fa-solid fa-magnifying-glass-minus" style="font-size:2.5rem; color:var(--primary); margin-bottom:10px" aria-hidden="true"></i>
                 <p>No se encontraron productos bajo esos filtros específicos.</p>
             </div>
 
@@ -415,7 +416,7 @@
                     <div class="test-user">
                         <div class="test-avatar">MC</div>
                         <div>
-                            <h4 style="font-size:0.95rem;">Milagros Chávez</h4>
+                            <h3 style="font-size:0.95rem;">Milagros Chávez</h3>
                             <span style="font-size:0.8rem; color:#64748b;">Cliente Verificado</span>
                         </div>
                     </div>
@@ -425,7 +426,7 @@
                     <div class="test-user">
                         <div class="test-avatar">RE</div>
                         <div>
-                            <h4 style="font-size:0.95rem;">Ricardo Espinoza</h4>
+                            <h3 style="font-size:0.95rem;">Ricardo Espinoza</h3>
                             <span style="font-size:0.8rem; color:#64748b;">Administrador</span>
                         </div>
                     </div>
@@ -434,27 +435,27 @@
         </div>
     </section>
 
-    <!-- FAQs SECTION -->
+    <!-- FAQS SECTION -->
     <section id="faqs" style="padding-top:20px;">
         <div class="title">
             <h2>Preguntas Frecuentes</h2>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Cuánto tarda en llegar mi pedido express? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-question">¿Cuánto tarda en llegar mi pedido express? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
             <div class="faq-answer">Los despachos dentro del rango de cobertura urbana regular toman entre 30 a 45 minutos tras la validación de la orden por WhatsApp.</div>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Se requiere receta física al recibir medicamentos controlados? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-question">¿Se requiere receta física al recibir medicamentos controlados? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
             <div class="faq-answer">Sí. Para productos que requieran receta médica retenida, el repartidor deberá validar y recolectar el documento físico original antes de entregar el producto.</div>
         </div>
     </section>
 
     <section id="receta">
         <div class="prescription-box">
-            <h2><i class="fa-solid fa-receipt"></i> ¿Tienes una Receta Médica?</h2>
+            <h2><i class="fa-solid fa-receipt" aria-hidden="true"></i> ¿Tienes una Receta Médica?</h2>
             <p>No pierdas tiempo buscando. Envíanos una foto clara y un farmacéutico colegiado la cotizará al instante.</p>
             <a href="https://wa.me/51999999999?text=Hola,%20adjunto%20la%20foto%20de%20mi%20receta%20médica%20para%20cotización." target="_blank" rel="noopener" class="btn-prescription">
-                <i class="fa-brands fa-whatsapp"></i> Subir Receta vía WhatsApp
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Subir Receta vía WhatsApp
             </a>
         </div>
     </section>
@@ -463,8 +464,8 @@
     <div class="cart-overlay" id="cart-overlay"></div>
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
-            <h2><i class="fa-solid fa-basket-shopping"></i> Tu Lista de Pedido</h2>
-            <button class="close-cart" id="close-cart-btn">&times;</button>
+            <h2><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Tu Lista de Pedido</h2>
+            <button class="close-cart" id="close-cart-btn" aria-label="Cerrar carrito">&times;</button>
         </div>
         
         <div class="cart-items-container" id="cart-items-wrapper">
@@ -473,18 +474,18 @@
 
         <!-- SISTEMA DE CUPONES -->
         <div class="coupon-container">
-            <input type="text" id="coupon-code" class="coupon-input" placeholder="¿Cupón de descuento? (Ej: SALUD20)">
+            <input type="text" id="coupon-code" class="coupon-input" placeholder="¿Cupón? (Ej: SALUD20)">
             <button class="coupon-btn" onclick="applyCoupon()">Aplicar</button>
         </div>
         <div class="coupon-msg" id="coupon-msg">¡Cupón SALUD20 aplicado! (20% de descuento)</div>
 
         <!-- FORMULARIO DE RECOLECCIÓN DATOS -->
         <div class="cart-form-container">
-            <div class="cart-form-title"><i class="fa-solid fa-truck-ramped"></i> Detalles de Despacho</div>
+            <div class="cart-form-title"><i class="fa-solid fa-truck-ramped" aria-hidden="true"></i> Detalles de Despacho</div>
             <div class="form-grid">
                 <input type="text" id="cust-name" placeholder="Nombre de quien recibe" class="form-input" required>
                 <input type="text" id="cust-address" placeholder="Dirección exacta de entrega" class="form-input" required>
-                <select id="cust-payment" class="form-input">
+                <select id="cust-payment" class="form-input" aria-label="Seleccione medio de pago">
                     <option value="Yape / Plin">Pago Digital (Yape / Plin)</option>
                     <option value="Efectivo contraentrega">Efectivo contraentrega</option>
                     <option value="Tarjeta de crédito/débito">POS Tarjeta contraentrega</option>
@@ -506,13 +507,13 @@
                 <span id="cart-total-val">S/ 0.00</span>
             </div>
             <button class="checkout-btn" onclick="sendCartToWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> Enviar Pedido Completo
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enviar Pedido Completo
             </button>
         </div>
     </div>
 
     <div class="notification-toast" id="social-proof">
-        <i class="fa-solid fa-circle-check"></i>
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
         <div class="notification-text">
             <strong id="sp-user">María R. de Trujillo</strong>
             <p id="sp-action">Acaba de pedir Kit de Primeros Auxilios Pro</p>
@@ -524,12 +525,16 @@
     </footer>
 
     <script>
-        // Menú Móvil
+        // Menú Móvil con cierre automático al hacer clic en enlaces
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.addEventListener('click', () => navList.classList.toggle('active'));
 
-        // Gestión Segura del Estado Persistente del Carrito (Defensa ante localStorage corrupto)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => navList.classList.remove('active'));
+        });
+
+        // Gestión Segura del Estado Persistente del Carrito
         let cart = [];
         try {
             cart = JSON.parse(localStorage.getItem('saludtotal_cart')) || [];
@@ -561,7 +566,7 @@
         function addToCart(name, price, buttonNode) {
             const existingItem = cart.find(item => item.name === name);
             if(existingItem) {
-                if(existingItem.qty < 99) { // Límite lógico de stock por ítem
+                if(existingItem.qty < 99) {
                     existingItem.qty += 1;
                 } else {
                     alert("Has alcanzado el límite máximo permitido para este producto.");
@@ -572,10 +577,9 @@
             }
             saveAndUpdateCart();
             
-            // Animación y respuesta UX Premium en el botón
             if(buttonNode) {
                 const originalHTML = buttonNode.innerHTML;
-                buttonNode.innerHTML = `<i class="fa-solid fa-check"></i> ¡Agregado!`;
+                buttonNode.innerHTML = `<i class="fa-solid fa-check" aria-hidden="true"></i> ¡Agregado!`;
                 buttonNode.style.background = "var(--secondary)";
                 setTimeout(() => {
                     buttonNode.innerHTML = originalHTML;
@@ -588,7 +592,7 @@
             const item = cart.find(i => i.name === name);
             if(item) {
                 item.qty += change;
-                if(item.qty > 99) item.qty = 99; // Protección de desbordamiento
+                if(item.qty > 99) item.qty = 99;
                 if(item.qty <= 0) {
                     cart = cart.filter(i => i.name !== name);
                 }
@@ -647,9 +651,9 @@
                         <div class="cart-item-price">S/ ${item.price.toFixed(2)}</div>
                     </div>
                     <div class="cart-item-controls">
-                        <button class="cart-qty-btn" onclick="modifyQty('${item.name}', -1)">-</button>
+                        <button class="cart-qty-btn" onclick="modifyQty('${item.name}', -1)" aria-label="Disminuir cantidad">-</button>
                         <span class="cart-qty-num">${item.qty}</span>
-                        <button class="cart-qty-btn" onclick="modifyQty('${item.name}', 1)">+</button>
+                        <button class="cart-qty-btn" onclick="modifyQty('${item.name}', 1)" aria-label="Aumentar cantidad">+</button>
                     </div>
                 `;
                 wrapper.appendChild(itemEl);
@@ -674,12 +678,10 @@
             setTimeout(() => badge.style.transform = 'scale(1)', 200);
         }
 
-        // Sanitización estricta de textos para prevenir roturas de formato en WhatsApp
         function sanitizeInput(str) {
             return str.replace(/[&<>"'/\\*_\n]/g, '').trim();
         }
 
-        // ENVIAR DATOS A WHATSAPP Y LIMPIEZA POST-COMPRA
         function sendCartToWhatsApp() {
             if(cart.length === 0) {
                 alert("Por favor, agrega al menos un producto a tu lista.");
@@ -730,7 +732,6 @@
             
             window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 
-            // Flujo de Limpieza Post-Envío: Resetea el carrito tras despachar
             setTimeout(() => {
                 if(confirm("¿Tu ventana de WhatsApp abrió correctamente? Haz clic en Aceptar para limpiar tu lista actual.")) {
                     cart = [];
@@ -745,7 +746,6 @@
             }, 1000);
         }
 
-        // CONTROLADOR DE FILTRADO CON PRECIOS Y CATEGORÍAS
         const searchInput = document.getElementById('search-input');
         const priceRange = document.getElementById('price-range');
         const priceVal = document.getElementById('price-val');
@@ -810,7 +810,6 @@
             });
         });
 
-        // SIMULADOR SOCIAL PROOF (NOTIFICACIONES DINÁMICAS)
         const users = ["Alejandro M. de San Isidro", "Rosa P. de Miraflores", "Juan C. de Trujillo", "Beatriz L. de Surco"];
         const actions = ["pidió Vitaminas Multivitamínicas", "solicitó cotización de Receta Médica", "añadió Alcohol Antiséptico 70°", "compró Kit de Primeros Auxilios Pro"];
 
