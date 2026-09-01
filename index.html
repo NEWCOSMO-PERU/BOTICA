@@ -18,7 +18,7 @@
             --text: #334155;
             --gray-border: #e2e8f0;
             --whatsapp: #25D366;
-            --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-premium: 0 25px 35px -5px rgba(14, 165, 233, 0.08), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
             --accent: #ff3b30;
             --card-bg: #ffffff;
         }
@@ -66,7 +66,7 @@
         /* --- NAVBAR --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03); z-index: 1000;
             display: flex; justify-content: space-between; align-items: center; padding: 0 40px;
             border-bottom: 1px solid rgba(226, 232, 240, 0.5);
@@ -94,8 +94,8 @@
 
         /* --- HERO --- */
         header {
-            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent), radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent);
-            padding: 90px 20px; text-align: center; position: relative;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent), radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent);
+            padding: 80px 20px 60px 20px; text-align: center; position: relative;
         }
         header h1 { font-size: 3.2rem; color: var(--dark); font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
         header p { font-size: 1.15rem; max-width: 650px; margin: auto; color: #64748b; line-height: 1.6; }
@@ -106,87 +106,92 @@
         .search-box input {
             width: 100%; padding: 18px 25px 18px 55px; border: 2px solid var(--gray-border);
             border-radius: 16px; font-size: 16px; outline: none; transition: 0.3s; background: white;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.02);
         }
         .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15); }
         .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem; }
         
         .instant-tags { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
         .tag-btn {
-            background: white; border: 1px solid var(--gray-border); padding: 6px 14px;
-            border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: 0.2s; color: #64748b;
+            background: white; border: 1px solid var(--gray-border); padding: 7px 16px;
+            border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; color: #64748b;
+            font-weight: 500; box-shadow: 0 2px 5px rgba(0,0,0,0.01);
         }
-        .tag-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .tag-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(14, 165, 233, 0.03); transform: translateY(-1px); }
 
         .controls-wrapper { display: flex; flex-direction: column; gap: 25px; margin-bottom: 40px; }
 
         /* --- CATEGORÍAS --- */
         .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
         .category {
-            background: white; padding: 15px 10px; border-radius: 16px; text-align: center;
+            background: white; padding: 16px 10px; border-radius: 16px; text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02); cursor: pointer; transition: all 0.25s ease;
             border: 1px solid var(--gray-border); font-weight: 600; font-size: 0.85rem;
             display: flex; flex-direction: column; align-items: center; gap: 8px;
         }
         .category i { font-size: 1.3rem; color: var(--primary); transition: 0.2s; }
-        .category:hover { transform: translateY(-3px); border-color: var(--primary); color: var(--primary); }
-        .category.active { background: var(--dark); border-color: var(--dark); color: white; }
+        .category:hover { transform: translateY(-3px); border-color: var(--primary); color: var(--primary); box-shadow: 0 8px 20px rgba(14,165,233,0.08); }
+        .category.active { background: var(--dark); border-color: var(--dark); color: white; box-shadow: 0 10px 20px rgba(15,23,42,0.15); }
         .category.active i { color: var(--primary); }
 
-        /* --- PRODUCTOS / TARJETAS MODERNAS MEJORADAS --- */
+        /* --- PRODUCTOS / TARJETAS NIVEL TOP MEJORADAS --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
         .card {
             background: var(--card-bg); border-radius: 22px; overflow: hidden;
             border: 1px solid var(--gray-border); display: flex; flex-direction: column;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); position: relative; padding: 22px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; padding: 24px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
         }
-        .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-premium); border-color: rgba(14, 165, 233, 0.3); }
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: var(--shadow-premium); 
+            border-color: rgba(14, 165, 233, 0.4); 
+        }
         
-        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
         .card-icon { 
-            width: 50px; height: 50px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.2)); 
-            border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.3rem; 
-            transition: transform 0.3s;
+            width: 52px; height: 52px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.18)); 
+            border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.3rem; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .card:hover .card-icon { transform: scale(1.08) rotate(5deg); }
+        .card:hover .card-icon { transform: scale(1.1) rotate(6deg); background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
         
         .badge-cat { 
             font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 5px 12px; 
             background: var(--light); color: var(--primary-dark); border-radius: 30px; letter-spacing: 0.5px;
-            border: 1px solid rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.1); transition: 0.3s;
         }
+        .card:hover .badge-cat { background: rgba(14, 165, 233, 0.1); border-color: var(--primary); }
         
-        .card h3 { font-size: 1.1rem; color: var(--dark); margin-bottom: 8px; font-weight: 700; letter-spacing: -0.3px; }
-        .card p { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; line-height: 1.5; flex-grow: 1; }
+        .card h3 { font-size: 1.12rem; color: var(--dark); margin-bottom: 10px; font-weight: 700; letter-spacing: -0.3px; }
+        .card p { font-size: 0.86rem; color: #64748b; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
         
         .card-footer-info {
-            display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
-            padding-top: 10px; border-top: 1px dashed var(--gray-border);
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+            padding-top: 12px; border-top: 1px dashed var(--gray-border);
         }
-        .consult-price-text { font-size: 0.78rem; color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 5px; }
-        .stock-indicator { font-size: 0.72rem; color: #64748b; font-weight: 500; display: flex; align-items: center; gap: 4px; }
-        .stock-indicator::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; display: inline-block; }
+        .consult-price-text { font-size: 0.8rem; color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 6px; }
 
         .add-cart-btn {
-            width: 100%; padding: 13px; background: var(--primary); color: white; border: none;
-            border-radius: 14px; font-weight: 600; cursor: pointer; transition: all 0.25s ease;
+            width: 100%; padding: 14px; background: var(--primary); color: white; border: none;
+            border-radius: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
             display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.25);
         }
-        .add-cart-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(14, 165, 233, 0.3); }
+        .add-cart-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4); }
 
-        .results-count { text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 15px; }
+        .results-count { text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 15px; font-weight: 500; }
 
         /* --- PAGINACIÓN --- */
-        .pagination-container { display: flex; justify-content: center; gap: 8px; margin-top: 35px; flex-wrap: wrap; }
-        .page-btn { background: white; border: 1px solid var(--gray-border); padding: 8px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; color: var(--text); transition: 0.2s; }
-        .page-btn:hover, .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .pagination-container { display: flex; justify-content: center; gap: 8px; margin-top: 40px; flex-wrap: wrap; }
+        .page-btn { background: white; border: 1px solid var(--gray-border); padding: 9px 15px; border-radius: 10px; font-weight: 600; cursor: pointer; color: var(--text); transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.01); }
+        .page-btn:hover, .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(14,165,233,0.3); }
 
-        /* --- SECCIÓN PREGUNTAS FRECUENTES (FAQS) MEJORADA --- */
+        /* --- SECCIÓN PREGUNTAS FRECUENTES (FAQS) --- */
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
         .faq-item {
             background: white; border: 1px solid var(--gray-border); border-radius: 16px;
-            overflow: hidden; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            overflow: hidden; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
         .faq-item:hover { border-color: rgba(14, 165, 233, 0.4); }
         .faq-question {
@@ -199,10 +204,10 @@
             max-height: 0; overflow: hidden; padding: 0 24px; font-size: 0.92rem; color: #64748b;
             line-height: 1.6; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .faq-item.active { border-color: var(--primary); box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.08); }
+        .faq-item.active { border-color: var(--primary); box-shadow: 0 12px 25px -5px rgba(14, 165, 233, 0.1); }
         .faq-item.active .faq-question { color: var(--primary); }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
-        .faq-item.active .faq-answer { max-height: 200px; padding: 0 24px 22px 24px; }
+        .faq-item.active .faq-answer { max-height: 220px; padding: 0 24px 22px 24px; }
 
         /* --- CARRITO / PANEL LATERAL --- */
         .cart-sidebar {
@@ -213,7 +218,8 @@
         .cart-sidebar.open { right: 0; }
         .cart-header { padding: 25px; border-bottom: 1px solid var(--gray-border); display: flex; justify-content: space-between; align-items: center; }
         .cart-header h2 { font-size: 1.3rem; font-weight: 700; color: var(--dark); }
-        .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text); border: none; background: none; }
+        .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text); border: none; background: none; transition: 0.2s; }
+        .close-cart:hover { color: var(--accent); }
         .cart-items-container { flex-grow: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
         
         .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px; }
@@ -221,43 +227,46 @@
         .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; color: var(--dark); }
         .cart-item-sub { font-size: 0.75rem; color: #64748b; }
         .cart-item-controls { display: flex; align-items: center; gap: 10px; background: var(--light); border: 1px solid var(--gray-border); border-radius: 8px; padding: 4px 10px; }
-        .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.1rem; padding: 0 6px; }
+        .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.1rem; padding: 0 6px; transition: 0.2s; }
+        .cart-qty-btn:hover { color: var(--primary); }
         .cart-qty-num { font-size: 0.9rem; font-weight: 600; min-width: 18px; text-align: center; color: var(--dark); }
 
         /* --- FORMULARIO DE RESERVA --- */
         .cart-form-container { border-top: 1px solid var(--gray-border); padding: 20px 25px; background: var(--light); }
         .cart-form-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
         .form-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-        .form-input { width: 100%; padding: 11px 14px; background: #ffffff; border: 1px solid var(--gray-border); border-radius: 10px; color: var(--dark); font-size: 0.9rem; outline: none; font-weight: 500; }
-        .form-input:focus { border-color: var(--primary); }
+        .form-input { width: 100%; padding: 12px 16px; background: #ffffff; border: 1px solid var(--gray-border); border-radius: 12px; color: var(--dark); font-size: 0.9rem; outline: none; font-weight: 500; transition: 0.2s; }
+        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(14,165,233,0.1); }
 
         .cart-footer { padding: 25px; border-top: 1px solid var(--gray-border); background: #ffffff; }
         .checkout-btn {
             width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none;
             border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer;
             display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
         }
-        .checkout-btn:hover { background: #1eb855; transform: translateY(-2px); }
+        .checkout-btn:hover { background: #1eb855; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45); }
 
-        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1999; display: none; backdrop-filter: blur(4px); }
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1999; display: none; backdrop-filter: blur(5px); }
         .cart-overlay.open { display: block; }
 
         .prescription-box {
             background: linear-gradient(135deg, var(--dark), #1e293b); color: white;
             border-radius: 24px; padding: 50px 40px; text-align: center; max-width: 700px; margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(15,23,42,0.2);
         }
         .prescription-box p { opacity: 0.8; margin-bottom: 25px; line-height: 1.6; }
         .btn-prescription {
             background: var(--primary); color: white; border: none; padding: 15px 35px;
             border-radius: 50px; font-weight: 600; cursor: pointer; text-decoration: none;
             display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(14,165,233,0.3);
         }
-        .btn-prescription:hover { background: var(--primary-dark); transform: translateY(-3px); }
+        .btn-prescription:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(14,165,233,0.4); }
 
         section { max-width: 1200px; margin: auto; padding: 60px 20px; }
         .title { text-align: center; margin-bottom: 40px; }
-        .title h2 { font-size: 2.2rem; color: var(--dark); font-weight: 700; }
+        .title h2 { font-size: 2.2rem; color: var(--dark); font-weight: 700; letter-spacing: -0.5px; }
 
         /* --- FOOTER MODERNO --- */
         footer {
@@ -334,7 +343,6 @@
     </nav>
 
     <header>
-        <div style="background:var(--primary); color:white; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:700; margin-bottom:15px;">Botica Farma Guema - Más de 100 Medicamentos</div>
         <h1>Directorio Farmacéutico</h1>
         <p>Busca entre más de un centenar de productos, arma tu lista y consúltanos el precio o disponibilidad exacta vía WhatsApp en segundos.</p>
     </header>
@@ -370,10 +378,10 @@
         </div>
     </section>
 
-    <!-- CATALOGO CON PAGINACIÓN Y TARJETAS MEJORADAS -->
+    <!-- CATALOGO CON PAGINACIÓN Y TARJETAS NIVEL TOP -->
     <section id="catalogo">
         <div class="grid" id="products-grid">
-            <!-- Se inyectarán dinámicamente con el nuevo diseño de tarjetas -->
+            <!-- Se inyectarán dinámicamente -->
         </div>
         <div class="pagination-container" id="pagination-container">
             <!-- Botones de paginación -->
@@ -391,7 +399,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PREGUNTAS FRECUENTES (FAqs) MEJORADA -->
+    <!-- SECCIÓN PREGUNTAS FRECUENTES (FAQS) -->
     <section id="faqs">
         <div class="title">
             <h2>Preguntas Frecuentes</h2>
@@ -690,7 +698,6 @@
                     <p>${med.desc}</p>
                     <div class="card-footer-info">
                         <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio</div>
-                        <div class="stock-indicator">Disponible en stock</div>
                     </div>
                     <button class="add-cart-btn" onclick="addToCart('${med.name.replace(/'/g, "\\'")}', '${med.badge}', this)">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
