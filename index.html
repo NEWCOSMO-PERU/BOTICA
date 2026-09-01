@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farma Guema | Consulta y Reserva de Medicamentos</title>
+    <title>Farma Guema | Catálogo Masivo de Medicamentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -120,15 +120,15 @@
         .controls-wrapper { display: flex; flex-direction: column; gap: 25px; margin-bottom: 40px; }
 
         /* --- CATEGORÍAS --- */
-        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
         .category {
-            background: white; padding: 20px 15px; border-radius: 16px; text-align: center;
+            background: white; padding: 15px 10px; border-radius: 16px; text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02); cursor: pointer; transition: all 0.25s ease;
-            border: 1px solid var(--gray-border); font-weight: 600; font-size: 0.9rem;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            border: 1px solid var(--gray-border); font-weight: 600; font-size: 0.85rem;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
         }
-        .category i { font-size: 1.4rem; color: var(--primary); transition: 0.2s; }
-        .category:hover { transform: translateY(-5px); border-color: var(--primary); color: var(--primary); }
+        .category i { font-size: 1.3rem; color: var(--primary); transition: 0.2s; }
+        .category:hover { transform: translateY(-3px); border-color: var(--primary); color: var(--primary); }
         .category.active { background: var(--dark); border-color: var(--dark); color: white; }
         .category.active i { color: var(--primary); }
 
@@ -178,7 +178,7 @@
         .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.1rem; padding: 0 6px; }
         .cart-qty-num { font-size: 0.9rem; font-weight: 600; min-width: 18px; text-align: center; color: var(--dark); }
 
-        /* --- FORMULARIO DE RESERVA / QR --- */
+        /* --- FORMULARIO DE RESERVA --- */
         .cart-form-container { border-top: 1px solid var(--gray-border); padding: 20px 25px; background: var(--light); }
         .cart-form-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
         .form-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
@@ -255,9 +255,9 @@
     </nav>
 
     <header>
-        <div style="background:var(--primary); color:white; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:700; margin-bottom:15px;">Botica Farma Guema - Catálogo General</div>
-        <h1>Consulta y Separa tus Medicamentos</h1>
-        <p>Busca en nuestra base de datos de medicamentos, arma tu lista de consulta de precios y sepáralos para recojo en local con pago vía QR o efectivo.</p>
+        <div style="background:var(--primary); color:white; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:700; margin-bottom:15px;">Botica Farma Guema - Más de 100 Medicamentos</div>
+        <h1>Catálogo General Sin Precios</h1>
+        <p>Busca entre más de un centenar de productos farmacéuticos, arma tu lista y consúltanos el precio o disponibilidad exacta vía WhatsApp en segundos.</p>
     </header>
 
     <section id="buscar">
@@ -265,17 +265,18 @@
             <div class="search-area">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <input type="text" id="search-input" placeholder="Escribe el nombre del medicamento (Ej: Paracetamol, Amoxicilina...)">
+                    <input type="text" id="search-input" placeholder="Busca entre +100 medicamentos (Ej: Paracetamol, Omeprazol, Losartán...)">
                 </div>
                 <div class="instant-tags">
                     <button class="tag-btn" onclick="setSearchTag('Analgésico')">Analgésicos</button>
                     <button class="tag-btn" onclick="setSearchTag('Antibiótico')">Antibióticos</button>
                     <button class="tag-btn" onclick="setSearchTag('Vitamina')">Vitaminas</button>
-                    <button class="tag-btn" onclick="setSearchTag('Gástrico')">Gástricos</button>
+                    <button class="tag-btn" onclick="setSearchTag('Cardiovascular')">Cardiovasculares</button>
+                    <button class="tag-btn" onclick="setSearchTag('Respiratorio')">Respiratorios</button>
                 </div>
             </div>
         </div>
-        <p class="results-count" id="results-count">Mostrando todo el catálogo disponible</p>
+        <p class="results-count" id="results-count">Cargando catálogo completo...</p>
     </section>
 
     <section id="categorias" style="padding-top:0">
@@ -285,187 +286,24 @@
             <div class="category" data-cat="antibioticos"><i class="fa-solid fa-pills" aria-hidden="true"></i>Antibióticos</div>
             <div class="category" data-cat="vitaminas"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>Vitaminas</div>
             <div class="category" data-cat="estomacales"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>Estomacales</div>
+            <div class="category" data-cat="cardiovasculares"><i class="fa-solid fa-stethoscope" aria-hidden="true"></i>Cardio</div>
+            <div class="category" data-cat="respiratorios"><i class="fa-solid fa-lungs" aria-hidden="true"></i>Respiratorio</div>
         </div>
     </section>
 
-    <!-- DATA MASIVA DE MEDICAMENTOS SIN PRECIOS -->
+    <!-- DATA MASIVA (MÁS DE 100 MEDICAMENTOS SIN PRECIOS) -->
     <section id="catalogo">
         <div class="grid" id="products-grid">
-            
-            <!-- Analgésicos y Antiinflamatorios -->
-            <div class="card" data-category="analgesicos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
-                    <span class="badge-cat">Analgésico</span>
-                </div>
-                <h3>Paracetamol 500mg</h3>
-                <p>Analgésico y antipirético de uso frecuente para dolores leves o moderados y fiebre.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Paracetamol 500mg', 'Analgésico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="analgesicos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
-                    <span class="badge-cat">Analgésico</span>
-                </div>
-                <h3>Ibuprofeno 400mg</h3>
-                <p>Antiinflamatorio no esteroideo indicado para dolores musculares, inflamación y fiebre.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Ibuprofeno 400mg', 'Analgésico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="analgesicos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
-                    <span class="badge-cat">Analgésico</span>
-                </div>
-                <h3>Naproxeno 550mg</h3>
-                <p>Analgésico antiinflamatorio potente para dolores articulares, musculares o migrañas.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Naproxeno 550mg', 'Analgésico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="analgesicos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
-                    <span class="badge-cat">Analgésico</span>
-                </div>
-                <h3>Ketorolaco 10mg</h3>
-                <p>Alivio temporal de dolor agudo de moderada a fuerte intensidad.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Ketorolaco 10mg', 'Analgésico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <!-- Antibióticos -->
-            <div class="card" data-category="antibioticos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
-                    <span class="badge-cat">Antibiótico</span>
-                </div>
-                <h3>Amoxicilina 500mg</h3>
-                <p>Antibiótico betalactámico de amplio espectro para infecciones bacterianas (Requiere receta).</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Amoxicilina 500mg', 'Antibiótico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="antibioticos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
-                    <span class="badge-cat">Antibiótico</span>
-                </div>
-                <h3>Azitromicina 500mg</h3>
-                <p>Antibiótico macrólido indicado para infecciones de vías respiratorias (Requiere receta).</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Azitromicina 500mg', 'Antibiótico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="antibioticos">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
-                    <span class="badge-cat">Antibiótico</span>
-                </div>
-                <h3>Ciprofloxacino 500mg</h3>
-                <p>Antibiótico fluoroquinolona para infecciones bacterianas específicas (Requiere receta).</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Ciprofloxacino 500mg', 'Antibiótico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <!-- Vitaminas -->
-            <div class="card" data-category="vitaminas">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                    <span class="badge-cat">Vitamina</span>
-                </div>
-                <h3>Vitamina C 1000mg</h3>
-                <p>Suplemento antioxidante de refuerzo para el sistema inmunológico.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Vitamina C 1000mg', 'Vitamina', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="vitaminas">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                    <span class="badge-cat">Vitamina</span>
-                </div>
-                <h3>Complejo B Cápsulas</h3>
-                <p>Vitaminas esenciales para el correcto funcionamiento del sistema nervioso y energía.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Complejo B Cápsulas', 'Vitamina', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="vitaminas">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                    <span class="badge-cat">Vitamina</span>
-                </div>
-                <h3>Vitamina D3 2000 UI</h3>
-                <p>Apoya la absorción de calcio y la salud ósea e inmunológica.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Vitamina D3 2000 UI', 'Vitamina', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <!-- Estomacales -->
-            <div class="card" data-category="estomacales">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <span class="badge-cat">Gástrico</span>
-                </div>
-                <h3>Omeprazol 20mg</h3>
-                <p>Inhibidor de la bomba de protones para gastritis, acidez y reflujo gástrico.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Omeprazol 20mg', 'Gástrico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="card" data-category="estomacales">
-                <div class="card-top">
-                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <span class="badge-cat">Gástrico</span>
-                </div>
-                <h3>Antiespasmódico / Hioscina</h3>
-                <p>Alivio de cólicos estomacales, intestinales y espasmos digestivos.</p>
-                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
-                <button class="add-cart-btn" onclick="addToCart('Antiespasmódico / Hioscina', 'Gástrico', this)">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
-                </button>
-            </div>
-
-            <div class="no-results" id="no-results-msg">
-                <i class="fa-solid fa-magnifying-glass-minus" style="font-size:2.5rem; color:var(--primary); margin-bottom:10px" aria-hidden="true"></i>
-                <p>No se encontró el medicamento buscado en la base de datos.</p>
-            </div>
-
+            <!-- Se inyectará dinámicamente mediante JavaScript para mantener el código limpio y ordenado -->
         </div>
     </section>
 
     <!-- CONSULTA PERSONALIZADA -->
     <section id="consulta-receta">
         <div class="prescription-box">
-            <h2><i class="fa-solid fa-comment-medical" aria-hidden="true"></i> ¿No encuentras tu medicamento en la lista?</h2>
-            <p>Escríbenos directamente por WhatsApp para consultar cotizaciones, disponibilidad exacta o enviar una foto de tu receta médica.</p>
-            <a href="https://wa.me/51999999999?text=Hola,%20busco%20un%20medicamento%20que%20no%20aparece%20en%20su%20web." target="_blank" rel="noopener" class="btn-prescription">
+            <h2><i class="fa-solid fa-comment-medical" aria-hidden="true"></i> ¿No encuentras tu medicamento?</h2>
+            <p>Tenemos acceso a un stock más amplio en almacén. Escríbenos directamente por WhatsApp para cotizar o enviar una foto de tu receta médica.</p>
+            <a href="https://wa.me/51999999999?text=Hola,%20busco%20un%20medicamento%20específico%20que%20no%20halle%20en%20su%20web." target="_blank" rel="noopener" class="btn-prescription">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp
             </a>
         </div>
@@ -477,12 +315,12 @@
             <h2>Preguntas Frecuentes</h2>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Cómo me informan los precios de mi lista? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
-            <div class="faq-answer">Al armar tu lista y enviarla por WhatsApp, un farmacéutico de Farma Guema te responderá de inmediato con la cotización detallada de cada producto y las opciones de descuento o genéricos disponibles.</div>
+            <div class="faq-question">¿Por qué los medicamentos no muestran precios? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+            <div class="faq-answer">Manejamos diferentes marcas (laboratorios de marca y genéricos bioequivalentes) cuyos precios varían constantemente. Al armar tu lista, te cotizamos exactamente las mejores opciones económicas disponibles.</div>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Cómo se realiza el pago por QR? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
-            <div class="faq-answer">Una vez confirmada tu reserva y el monto total por WhatsApp, te compartiremos nuestro código QR (Yape, Plin o banca móvil) para que realices el pago y pases a retirar tu pedido sin esperas.</div>
+            <div class="faq-question">¿Cómo aparto los productos? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+            <div class="faq-answer">Agregas los ítems a tu lista virtual, completas tus datos y haces clic en enviar a WhatsApp. Nuestro equipo te confirmará stock y preparará tu pedido para recojo rápido en local.</div>
         </div>
     </section>
 
@@ -497,11 +335,11 @@
         <div class="cart-items-container" id="cart-items-wrapper"></div>
 
         <div class="cart-form-container">
-            <div class="cart-form-title"><i class="fa-solid fa-user-check" aria-hidden="true"></i> Datos de contacto y pago</div>
+            <div class="cart-form-title"><i class="fa-solid fa-user-check" aria-hidden="true"></i> Datos de contacto</div>
             <div class="form-grid">
                 <input type="text" id="cust-name" placeholder="Tu Nombre y Apellido" class="form-input" required>
                 <select id="cust-payment" class="form-input" aria-label="Forma de pago">
-                    <option value="Deseo pagar adelantado con QR (Yape/Plin)">Pagar con Código QR (Yape/Plin)</option>
+                    <option value="Deseo cotización y pagar por QR (Yape/Plin)">Cotizar y pagar con QR (Yape/Plin)</option>
                     <option value="Pago en efectivo al recoger en local">Pago en efectivo al recoger</option>
                     <option value="Pago con tarjeta POS en local">Pago con tarjeta POS en local</option>
                 </select>
@@ -520,9 +358,137 @@
     </footer>
 
     <script>
+        // BASE DE DATOS MASIVA DE +100 MEDICAMENTOS SIN PRECIOS
+        const databaseMedicines = [
+            // Analgésicos y Antiinflamatorios (1-20)
+            { name: "Paracetamol 500mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Alivio de dolores leves o moderados y fiebre." },
+            { name: "Ibuprofeno 400mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Antiinflamatorio no esteroideo para dolores musculares." },
+            { name: "Naproxeno 550mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Tratamiento de dolores articulares y migrañas." },
+            { name: "Ketorolaco 10mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Alivio temporal de dolor agudo moderado a fuerte." },
+            { name: "Ácido Acetilsalicílico 100mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Analgésico y protector cardiovascular preventivo." },
+            { name: "Diclofenaco Sódico 50mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Antiinflamatorio para reumatismo y lesiones." },
+            { name: "Meloxicam 15mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Alivio de inflamación en osteoartritis." },
+            { name: "Celecoxib 200mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Analgésico inhibidor COX-2 para dolores crónicos." },
+            { name: "Tramadol 50mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Analgésico opioide menor para dolores moderados/severos." },
+            { name: "Metamizol Sódico 500mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Potente analgésico y antipirético." },
+            { name: "Paracetamol + Cafeína", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Fórmula reforzada para dolores de cabeza intensos." },
+            { name: "Ibuprofeno 600mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Dosis alta de antiinflamatorio muscular." },
+            { name: "Diclofenaco Gel 1%", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Gel tópico para dolores localizados y golpes." },
+            { name: "Ketoprofeno 100mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Antiinflamatorio no esteroideo de acción rápida." },
+            { name: "Nimesulida 100mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Antiflogístico y analgésico de corta duración." },
+            { name: "Piroxicam 20mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Tratamiento antiinflamatorio para procesos artríticos." },
+            { name: "Flurbiprofeno 100mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Analgésico indicado para dolores dentales y óseos." },
+            { name: "Etoricoxib 90mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Antiinflamatorio inhibidor selectivo para artrosis." },
+            { name: "Dexketoprofeno 25mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Sal de acción rápida para dolores agudos." },
+            { name: "Clonixinato de Lisina 125mg", cat: "analgesicos", badge: "Analgésico", icon: "fa-capsules", desc: "Analgésico no narcótico de rápida respuesta." },
+
+            // Antibióticos (21-45)
+            { name: "Amoxicilina 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Amplio espectro para infecciones bacterianas." },
+            { name: "Azitromicina 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Macrólido indicado para vías respiratorias." },
+            { name: "Ciprofloxacino 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Fluoroquinolona para infecciones urinarias y gástricas." },
+            { name: "Cefalexina 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Cefalosporina de primera generación." },
+            { name: "Amoxicilina + Ácido Clavulánico 875/125mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antibiótico potenciado contra bacterias resistentes." },
+            { name: "Doxiciclina 100mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Tetraciclina para infecciones dérmicas y respiratorias." },
+            { name: "Clindamicina 300mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Lincosamida para infecciones anaeróbicas y dentales." },
+            { name: "Nitrofurantoína 100mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antiséptico urinario específico." },
+            { name: "Eritromicina 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Alternativa antibiótica para alérgicos a penicilina." },
+            { name: "Levofloxacino 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antibiótico de amplio espectro respiratorio." },
+            { name: "Cefuroxima 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Cefalosporina de segunda generación." },
+            { name: "Metronidazol 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antibiótico y antiparasitario anaeróbico." },
+            { name: "Trimetoprima + Sulfametoxazol", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antibiótico combinados para infecciones diversas." },
+            { name: "Ampicilina 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Penicilina semisintética de amplio espectro." },
+            { name: "Claritromicina 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Macrólido para infecciones de garganta y senos paranasales." },
+            { name: "Norfloxacino 400mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Quinolona para infecciones del tracto urinario." },
+            { name: "Fluconazol 150mg", cat: "antibioticos", badge: "Antimicótico", icon: "fa-pills", desc: "Antifúngico sistémico." },
+            { name: "Ketoconazol 200mg", cat: "antibioticos", badge: "Antimicótico", icon: "fa-pills", desc: "Antimicótico de amplio espectro." },
+            { name: "Itrakonazol 100mg", cat: "antibioticos", badge: "Antimicótico", icon: "fa-pills", desc: "Tratamiento de infecciones micóticas profundas." },
+            { name: "Aciclovir 400mg", cat: "antibioticos", badge: "Antiviral", icon: "fa-pills", desc: "Antiviral para herpes simple y zóster." },
+            { name: "Valaciclovir 500mg", cat: "antibioticos", badge: "Antiviral", icon: "fa-pills", desc: "Antiviral de alta absorción." },
+            { name: "Tinidazol 500mg", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antiparasitario y antimicrobiano." },
+            { name: "Secnidazol 1g", cat: "antibioticos", badge: "Antibiótico", icon: "fa-pills", desc: "Antiparasitario de dosis única." },
+            { name: "Albendazol 400mg", cat: "antibioticos", badge: "Antiparasitario", icon: "fa-pills", desc: "Desparasitante de amplio espectro." },
+            { name: "Mebendazol 100mg", cat: "antibioticos", badge: "Antiparasitario", icon: "fa-pills", desc: "Antihelmíntico intestinal." },
+
+            // Vitaminas y Suplementos (46-70)
+            { name: "Vitamina C 1000mg", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Refuerzo antioxidante del sistema inmune." },
+            { name: "Complejo B Cápsulas", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Vitaminas esenciales para el sistema nervioso." },
+            { name: "Vitamina D3 2000 UI", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Apoya la absorción de calcio y salud ósea." },
+            { name: "Multivitamínico General", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Fórmula equilibrada de minerales y vitaminas diarias." },
+            { name: "Zinc 15mg", cat: "vitaminas", badge: "Mineral", icon: "fa-heart-pulse", desc: "Mineral clave para defensas y metabolismo." },
+            { name: "Calcio + Magnesio + D3", cat: "vitaminas", badge: "Mineral", icon: "fa-heart-pulse", desc: "Fortalecimiento de huesos y articulaciones." },
+            { name: "Hierro + Ácido Fólico", cat: "vitaminas", badge: "Mineral", icon: "fa-heart-pulse", desc: "Prevención y tratamiento de estados anémicos." },
+            { name: "Omega 3 Aceite de Pescado", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Ácidos grasos esenciales para salud cardiaca y cerebral." },
+            { name: "Ácido Fólico 5mg", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Vitamina B9 esencial para gestación." },
+            { name: "Vitamina E 400 UI", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Poderoso antioxidante celular." },
+            { name: "Biotina 10000 mcg", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Vitamina B7 para cabello, piel y uñas." },
+            { name: "Magnesio Cloruro / Citrato", cat: "vitaminas", badge: "Mineral", icon: "fa-heart-pulse", desc: "Relajante muscular y energético natural." },
+            { name: "Coenzima Q10 100mg", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Antioxidante vital para la energía celular cardíaca." },
+            { name: "Colágeno Hidrolizado en Polvo/Caps", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Salud articular, piel y cartílagos." },
+            { name: "Vitamina A + D", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Protección visual y de mucosas." },
+            { name: "Glucosamina + Condroitina", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Regenerador y protector de cartílagos articulares." },
+            { name: "Ginseng + Vitaminas", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Revitalizante físico y mental." },
+            { name: "Lecitina de Soya 1200mg", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Ayuda al metabolismo de grasas y colesterol." },
+            { name: "Vitamina B12 1000 mcg", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Metabolismo energético y formación de glóbulos rojos." },
+            { name: "Vitamina K2", cat: "vitaminas", badge: "Vitamina", icon: "fa-heart-pulse", desc: "Direcciona el calcio hacia los huesos correctamente." },
+            { name: "Probióticos Cápsulas", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Restauración de la flora intestinal y defensas." },
+            { name: "Ashwagandha Extracto", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Adaptógeno natural para control del estrés." },
+            { name: "Melatonina 3mg o 5mg", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Regulador natural del ciclo de sueño." },
+            { name: "Spirulina 500mg", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Alga rica en proteínas y nutrientes esenciales." },
+            { name: "Proteína Whey Isolada (Muestra/Lata)", cat: "vitaminas", badge: "Suplemento", icon: "fa-heart-pulse", desc: "Complemento proteico para desarrollo muscular." },
+
+            // Estomacales y Digestivos (71-88)
+            { name: "Omeprazol 20mg", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Inhibidor para gastritis, acidez y reflujo." },
+            { name: "Esomeprazol 40mg", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Protector gástrico de alta potencia." },
+            { name: "Pantoprazol 40mg", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Tratamiento de úlceras y reflujo gastroesofágico." },
+            { name: "Ranitidina 150mg", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Antagonista H2 para reducir acidez estomacal." },
+            { name: "Antiespasmódico / Hioscina", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Alivio de cólicos estomacales e intestinales." },
+            { name: "Metoclopramida 10mg", cat: "estomacales", badge: "Digestivo", icon: "fa-shield-halved", desc: "Antiemético para náuseas y control de vómitos." },
+            { name: "Dimeticona / Simeticona 80mg", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Alivio rápido de gases y distensión abdominal." },
+            { name: "Antiácido en Suspensión (Magaldrato)", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Neutralizante inmediato de la acidez estomacal." },
+            { name: "Loperamida 2mg", cat: "estomacales", badge: "Digestivo", icon: "fa-shield-halved", desc: "Control rápido de diarreas agudas inespecíficas." },
+            { name: "Sales de Rehidratación Oral", cat: "estomacales", badge: "Hidratación", icon: "fa-shield-halved", desc: "Previene la deshidratación por cuadros diarreicos." },
+            { name: "Sucralfato 1g", cat: "estomacales", badge: "Gástrico", icon: "fa-shield-halved", desc: "Protector de la mucosa gástrica contra úlceras." },
+            { name: "Trimebutina 200mg", cat: "estomacales", badge: "Digestivo", icon: "fa-shield-halved", desc: "Regulador de la motilidad intestinal (Colon irritable)." },
+            { name: "Ondansetrón 8mg", cat: "estomacales", badge: "Digestivo", icon: "fa-shield-halved", desc: "Antiemético potente para náuseas severas." },
+            { name: "Carbon Activado Cápsulas", cat: "estomacales", badge: "Digestivo", icon: "fa-shield-halved", desc: "Absorbente de toxinas y gases intestinales." },
+            { name: "Bisacodilo 5mg", cat: "estomacales", badge: "Laxante", icon: "fa-shield-halved", desc: "Laxante estimulante para el estreñimiento ocasional." },
+            { name: "Picosulfato de Sodio", cat: "estomacales", badge: "Laxante", icon: "fa-shield-halved", desc: "Solución laxante oral de acción predecible." },
+            { name: "Polietilenglicol (Macrogol)", cat: "estomacales", badge: "Laxante", icon: "fa-shield-halved", desc: "Laxante osmótico suave para limpieza intestinal." },
+            { name: "Enzimas Digestivas Complejas", cat: "estomacales", badge: "Digestivo", icon: "fa-shield-halved", desc: "Apoyo para digestiones pesadas y lentas." },
+
+            // Cardiovasculares y Presión (89-98)
+            { name: "Losartán Potásico 50mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Control de la presión arterial alta (Hipertensión)." },
+            { name: "Enalapril 10mg o 20mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "IECA indicado para la hipertensión y falla cardiaca." },
+            { name: "Atorvastatina 20mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Reducción de colesterol total y triglicéridos." },
+            { name: "Rosuvastatina 10mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Estatina de alta potencia para lípidos en sangre." },
+            { name: "Amlodipino 5mg o 10mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Bloqueador de canales de calcio para hipertensión." },
+            { name: "Valsartán 160mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Antagonista de los receptores de angiotensina II." },
+            { name: "Clopidogrel 75mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Antiagregante plaquetario preventivo trombótico." },
+            { name: "Carvedilol 6.25mg o 12.5mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Betabloqueante para hipertensión e insuficiencia cardiaca." },
+            { name: "Hidroclorotiazida 25mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Diurético tiazídico auxiliar en presión arterial." },
+            { name: "Furosemida 40mg", cat: "cardiovasculares", badge: "Cardio", icon: "fa-stethoscope", desc: "Diurético de asa para retención de líquidos." },
+
+            // Respiratorios y Antigripales (99-112)
+            { name: "Loratadina 10mg", cat: "respiratorios", badge: "Antihistamínico", icon: "fa-lungs", desc: "Antihistamínico no sedante para alergias y rinitis." },
+            { name: "Cetirizina 10mg", cat: "respiratorios", badge: "Antihistamínico", icon: "fa-lungs", desc: "Alivio de síntomas de alergia estacional y urticaria." },
+            { name: "Clorfenamina Maleato 4mg", cat: "respiratorios", badge: "Antihistamínico", icon: "fa-lungs", desc: "Control de síntomas gripales y estornudos." },
+            { name: "Levocetirizina 5mg", cat: "respiratorios", badge: "Antihistamínico", icon: "fa-lungs", desc: "Antihistamínico de potencia superior y larga duración." },
+            { name: "Salbutamol Inhalador 100mcg", cat: "respiratorios", badge: "Respiratorio", icon: "fa-lungs", desc: "Broncodilatador de rescate para asma o broncoespasmo." },
+            { name: "Bromuro de Ipratropio Inhalador", cat: "respiratorios", badge: "Respiratorio", icon: "fa-lungs", desc: "Broncodilatador anticolinérgico para EPOC." },
+            { name: "Acetilcisteína 600mg (Efervescente)", cat: "respiratorios", badge: "Mucolítico", icon: "fa-lungs", desc: "Disuelve la mucosidad espesa en vías respiratorias." },
+            { name: "Ambroxol 30mg Jarabe/Tabletas", cat: "respiratorios", badge: "Mucolítico", icon: "fa-lungs", desc: "Expectorante y mucolítico para tos productiva." },
+            { name: "Dextrometorfano Jarabe", cat: "respiratorios", badge: "Antitusígeno", icon: "fa-lungs", desc: "Supresor de la tos seca e irritativa." },
+            { name: "Montelukast 10mg", cat: "respiratorios", badge: "Respiratorio", icon: "fa-lungs", desc: "Antagonista de leucotrienos para asma y rinitis alérgica." },
+            { name: "Pseudoefedrina + Antigripal Completo", cat: "respiratorios", badge: "Antigripal", icon: "fa-lungs", desc: "Descongestionante nasal y alivio integral de gripe." },
+            { name: "Budesonida Spray Nasal", cat: "respiratorios", badge: "Respiratorio", icon: "fa-lungs", desc: "Corticosteroide para rinitis alérgica crónica." },
+            { name: "Fluticasona Spray Nasal", cat: "respiratorios", badge: "Respiratorio", icon: "fa-lungs", desc: "Control antiinflamatorio de congestión nasal alérgica." },
+            { name: "Teofilina / Aminofilina", cat: "respiratorios", badge: "Respiratorio", icon: "fa-lungs", desc: "Broncodilatador de mantenimiento." }
+        ];
+
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
             setTimeout(() => splash.classList.add('fade-out'), 600);
+            renderMedicines(databaseMedicines);
         });
 
         const menuToggle = document.getElementById('mobile-menu');
@@ -556,6 +522,40 @@
         document.getElementById('open-cart-btn').addEventListener('click', openCart);
         document.getElementById('close-cart-btn').addEventListener('click', closeCart);
         document.getElementById('cart-overlay').addEventListener('click', closeCart);
+
+        function renderMedicines(list) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = "";
+
+            if (list.length === 0) {
+                document.getElementById('no-results-msg').style.display = "block";
+                document.getElementById('results-count').textContent = "Se encontraron 0 medicamentos";
+                return;
+            } else {
+                document.getElementById('no-results-msg').style.display = "none";
+            }
+
+            list.forEach(med => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.setAttribute('data-category', med.cat);
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="card-icon"><i class="fa-solid ${med.icon}"></i></div>
+                        <span class="badge-cat">${med.badge}</span>
+                    </div>
+                    <h3>${med.name}</h3>
+                    <p>${med.desc}</p>
+                    <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                    <button class="add-cart-btn" onclick="addToCart('${med.name.replace(/'/g, "\\'")}', '${med.badge}', this)">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('results-count').textContent = `Mostrando ${list.length} medicamentos en el catálogo`;
+        }
 
         function addToCart(name, category, buttonNode) {
             const existingItem = cart.find(item => item.name === name);
@@ -600,7 +600,7 @@
             let count = 0;
 
             if (cart.length === 0) {
-                wrapper.innerHTML = `<p style="text-align:center; color:#64748b; margin-top:40px">Tu lista de consulta está vacía. Agrega medicamentos del catálogo.</p>`;
+                wrapper.innerHTML = `<p style="text-align:center; color:#64748b; margin-top:40px">Tu lista de consulta está vacía. Agrega medicamentos del catálogo masivo.</p>`;
             }
 
             cart.forEach(item => {
@@ -611,12 +611,12 @@
                 itemEl.innerHTML = `
                     <div class="cart-item-info">
                         <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-sub">Categoría: ${item.category}</div>
+                        <div class="cart-item-sub">Tipo: ${item.category}</div>
                     </div>
                     <div class="cart-item-controls">
-                        <button class="cart-qty-btn" onclick="modifyQty('${item.name}', -1)">-</button>
+                        <button class="cart-qty-btn" onclick="modifyQty('${item.name.replace(/'/g, "\\'")}', -1)">-</button>
                         <span class="cart-qty-num">${item.qty}</span>
-                        <button class="cart-qty-btn" onclick="modifyQty('${item.name}', 1)">+</button>
+                        <button class="cart-qty-btn" onclick="modifyQty('${item.name.replace(/'/g, "\\'")}', 1)">+</button>
                     </div>
                 `;
                 wrapper.appendChild(itemEl);
@@ -644,12 +644,12 @@
                 return;
             }
 
-            let message = "💊 *LISTA DE CONSULTA Y RESERVA - FARMA GUEMA*\n";
+            let message = "💊 *LISTA MASIVA DE CONSULTA - FARMA GUEMA*\n";
             message += "===================================\n\n";
             message += `👤 *CLIENTE:* ${name}\n`;
-            message += `💳 *MÉTODO DE PAGO / RETIRO:* ${payment}\n\n`;
+            message += `💳 *PREFERENCIA:* ${payment}\n\n`;
             message += "===================================\n";
-            message += "📋 *MEDICAMENTOS SOLICITADOS:* \n\n";
+            message += "📋 *MEDICAMENTOS SELECCIONADOS:* \n\n";
             
             cart.forEach((item, index) => {
                 message += `*${index + 1}.* ${item.name}\n`;
@@ -657,7 +657,7 @@
             });
 
             message += "===================================\n";
-            message += "Hola, deseo consultar los precios de estos medicamentos, confirmar stock, realizar el pago (si elegí QR) y separarlos para recogerlos en su local. ¡Gracias!";
+            message += "Hola, deseo cotizar el precio de estos medicamentos y separarlos para recoger en local. ¡Gracias!";
 
             const encodedMessage = encodeURIComponent(message);
             const phoneNumber = "51999999999"; // Reemplaza con tu número de WhatsApp
@@ -665,7 +665,7 @@
             window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 
             setTimeout(() => {
-                if(confirm("¿Se abrió WhatsApp correctamente? Pulsa Aceptar para limpiar tu lista de selección.")) {
+                if(confirm("¿Se abrió WhatsApp correctamente? Pulsa Aceptar para limpiar tu lista.")) {
                     cart = [];
                     document.getElementById('cust-name').value = "";
                     saveAndUpdateCart();
@@ -675,11 +675,7 @@
         }
 
         const searchInput = document.getElementById('search-input');
-        const cards = document.querySelectorAll('.card');
         const categories = document.querySelectorAll('.category');
-        const noResultsMsg = document.getElementById('no-results-msg');
-        const resultsCount = document.getElementById('results-count');
-
         let activeCategory = 'all';
 
         function cleanText(text) {
@@ -693,29 +689,18 @@
 
         function filterProducts() {
             const searchText = cleanText(searchInput.value.trim());
-            let visibleCount = 0;
 
-            cards.forEach(card => {
-                const productName = cleanText(card.querySelector('h3').textContent);
-                const productDesc = cleanText(card.querySelector('p').textContent);
-                const productCategory = card.getAttribute('data-category');
+            const filtered = databaseMedicines.filter(med => {
+                const matchName = cleanText(med.name).includes(searchText);
+                const matchDesc = cleanText(med.desc).includes(searchText);
+                const matchBadge = cleanText(med.badge).includes(searchText);
+                const matchesSearch = matchName || matchDesc || matchBadge;
+                const matchesCategory = (activeCategory === 'all' || med.cat === activeCategory);
 
-                const matchesSearch = productName.includes(searchText) || productDesc.includes(searchText);
-                const matchesCategory = (activeCategory === 'all' || productCategory === activeCategory);
-
-                if (matchesSearch && matchesCategory) {
-                    card.style.display = "flex";
-                    visibleCount++;
-                } else {
-                    card.style.display = "none";
-                }
+                return matchesSearch && matchesCategory;
             });
 
-            resultsCount.textContent = (searchText !== "" || activeCategory !== 'all') 
-                ? `Se encontraron ${visibleCount} medicamento(s)`
-                : "Mostrando todo el catálogo disponible";
-
-            noResultsMsg.style.display = (visibleCount === 0) ? "block" : "none";
+            renderMedicines(filtered);
         }
 
         searchInput.addEventListener('input', filterProducts);
