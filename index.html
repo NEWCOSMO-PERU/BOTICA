@@ -118,12 +118,6 @@
         .tag-btn:hover { border-color: var(--primary); color: var(--primary); }
 
         .controls-wrapper { display: flex; flex-direction: column; gap: 25px; margin-bottom: 40px; }
-        .price-filter-box {
-            text-align: center; max-width: 300px; margin: 0 auto; background: white;
-            padding: 15px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            border: 1px solid var(--gray-border);
-        }
-        .price-filter-box input { width: 100%; accent-color: var(--primary); margin-top: 8px; cursor: pointer; }
 
         /* --- CATEGORÍAS --- */
         .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
@@ -138,31 +132,26 @@
         .category.active { background: var(--dark); border-color: var(--dark); color: white; }
         .category.active i { color: var(--primary); }
 
-        /* --- PRODUCTOS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        /* --- PRODUCTOS (DATA MASIVA SIN PRECIOS) --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .card {
-            background: white; border-radius: 24px; overflow: hidden;
+            background: white; border-radius: 20px; overflow: hidden;
             border: 1px solid var(--gray-border); display: flex; flex-direction: column;
-            transition: all 0.3s ease; position: relative;
+            transition: all 0.3s ease; position: relative; padding: 20px;
         }
-        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-premium); }
-        .badge-promo {
-            position: absolute; top: 15px; left: 15px; background: var(--accent);
-            color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; z-index: 2;
-        }
-        .img-container { width: 100%; height: 240px; overflow: hidden; background: #f8fafc; position: relative; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .card:hover img { transform: scale(1.08); }
-        .content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
-        .content h3 { font-size: 1.2rem; color: var(--dark); margin-bottom: 8px; font-weight: 700; }
-        .content p { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
-        .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .price { font-size: 1.5rem; font-weight: 700; color: var(--dark); }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-premium); }
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .card-icon { width: 45px; height: 45px; background: rgba(14, 165, 233, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2rem; }
+        .badge-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; background: var(--light); color: #64748b; border-radius: 20px; }
+        
+        .card h3 { font-size: 1.05rem; color: var(--dark); margin-bottom: 6px; font-weight: 700; }
+        .card p { font-size: 0.85rem; color: #64748b; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
+        .consult-price-text { font-size: 0.8rem; color: var(--secondary); font-weight: 600; margin-bottom: 12px; }
 
         .add-cart-btn {
-            width: 100%; padding: 14px; background: var(--primary); color: white; border: none;
-            border-radius: 14px; font-weight: 600; cursor: pointer; transition: 0.3s;
-            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.95rem;
+            width: 100%; padding: 12px; background: var(--primary); color: white; border: none;
+            border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.9rem;
         }
         .add-cart-btn:hover { background: var(--primary-dark); }
 
@@ -183,13 +172,13 @@
         
         .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px; }
         .cart-item-info { flex-grow: 1; }
-        .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; color: var(--dark); }
-        .cart-item-price { color: var(--secondary); font-weight: 700; font-size: 0.9rem; }
-        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: var(--light); border: 1px solid var(--gray-border); border-radius: 8px; padding: 6px 12px; }
-        .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.2rem; padding: 0 8px; min-width: 25px; text-align: center; }
-        .cart-qty-num { font-size: 0.95rem; font-weight: 600; min-width: 20px; text-align: center; color: var(--dark); }
+        .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; color: var(--dark); }
+        .cart-item-sub { font-size: 0.75rem; color: #64748b; }
+        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: var(--light); border: 1px solid var(--gray-border); border-radius: 8px; padding: 4px 10px; }
+        .cart-qty-btn { background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: bold; font-size: 1.1rem; padding: 0 6px; }
+        .cart-qty-num { font-size: 0.9rem; font-weight: 600; min-width: 18px; text-align: center; color: var(--dark); }
 
-        /* --- FORMULARIO DE RESERVA --- */
+        /* --- FORMULARIO DE RESERVA / QR --- */
         .cart-form-container { border-top: 1px solid var(--gray-border); padding: 20px 25px; background: var(--light); }
         .cart-form-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
         .form-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
@@ -197,8 +186,6 @@
         .form-input:focus { border-color: var(--primary); }
 
         .cart-footer { padding: 25px; border-top: 1px solid var(--gray-border); background: #ffffff; }
-        .total-main { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 700; font-size: 1.3rem; color: var(--dark); }
-        
         .checkout-btn {
             width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none;
             border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer;
@@ -210,7 +197,6 @@
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1999; display: none; backdrop-filter: blur(4px); }
         .cart-overlay.open { display: block; }
 
-        /* --- SECCIÓN RECETA / CONSULTA PERSONALIZADA --- */
         .prescription-box {
             background: linear-gradient(135deg, var(--dark), #1e293b); color: white;
             border-radius: 24px; padding: 50px 40px; text-align: center; max-width: 700px; margin: 0 auto;
@@ -222,18 +208,6 @@
             display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
         }
         .btn-prescription:hover { background: var(--primary-dark); transform: translateY(-3px); }
-
-        /* --- FAQ Y SECCIONES --- */
-        .testimonials { background: #ffffff; border-top: 1px solid var(--gray-border); border-bottom: 1px solid var(--gray-border); }
-        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .test-card { background: var(--light); border: 1px solid var(--gray-border); padding: 30px; border-radius: 20px; }
-        .test-user { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
-        .test-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gray-border); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary); }
-
-        .faq-item { border-bottom: 1px solid var(--gray-border); padding: 20px 0; cursor: pointer; }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--dark); }
-        .faq-answer { padding-top: 12px; color: #64748b; display: none; line-height: 1.6; font-size: 0.95rem; }
-        .faq-item.active .faq-answer { display: block; }
 
         section { max-width: 1200px; margin: auto; padding: 60px 20px; }
         .title { text-align: center; margin-bottom: 40px; }
@@ -269,21 +243,21 @@
         <a href="#" class="logo"><i class="fa-solid fa-pills" style="color:var(--primary)" aria-hidden="true"></i> Farma<span>Guema</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Abrir menú"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
         <ul class="nav-links" id="nav-list">
-            <li><a href="#buscar">Consultar</a></li>
+            <li><a href="#buscar">Buscador</a></li>
             <li><a href="#categorias">Categorías</a></li>
-            <li><a href="#productos">Medicamentos</a></li>
-            <li><a href="#consulta-receta">Recetas y Dudas</a></li>
+            <li><a href="#catalogo">Medicamentos</a></li>
+            <li><a href="#consulta-receta">Contacto</a></li>
         </ul>
-        <button class="cart-nav-btn" id="open-cart-btn" aria-label="Abrir lista de separación">
-            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Lista / Reserva
+        <button class="cart-nav-btn" id="open-cart-btn" aria-label="Ver lista de consulta">
+            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i> Mi Lista / Reserva
             <span class="cart-count" id="cart-badge">0</span>
         </button>
     </nav>
 
     <header>
-        <div style="background:var(--primary); color:white; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:700; margin-bottom:15px;">Consulta de Precios y Separación</div>
-        <h1>Botica Farma Guema</h1>
-        <p>Consulta la disponibilidad de tus medicamentos, sepáralos para recogerlos en nuestro local o paga de forma digital mediante QR.</p>
+        <div style="background:var(--primary); color:white; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:700; margin-bottom:15px;">Botica Farma Guema - Catálogo General</div>
+        <h1>Consulta y Separa tus Medicamentos</h1>
+        <p>Busca en nuestra base de datos de medicamentos, arma tu lista de consulta de precios y sepáralos para recojo en local con pago vía QR o efectivo.</p>
     </header>
 
     <section id="buscar">
@@ -291,18 +265,14 @@
             <div class="search-area">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <input type="text" id="search-input" placeholder="Busca un medicamento, vitamina o producto...">
+                    <input type="text" id="search-input" placeholder="Escribe el nombre del medicamento (Ej: Paracetamol, Amoxicilina...)">
                 </div>
                 <div class="instant-tags">
+                    <button class="tag-btn" onclick="setSearchTag('Analgésico')">Analgésicos</button>
+                    <button class="tag-btn" onclick="setSearchTag('Antibiótico')">Antibióticos</button>
                     <button class="tag-btn" onclick="setSearchTag('Vitamina')">Vitaminas</button>
-                    <button class="tag-btn" onclick="setSearchTag('Alcohol')">Antisépticos</button>
-                    <button class="tag-btn" onclick="setSearchTag('Kit')">Botiquín</button>
+                    <button class="tag-btn" onclick="setSearchTag('Gástrico')">Gástricos</button>
                 </div>
-            </div>
-
-            <div class="price-filter-box">
-                <label for="price-range" style="font-weight:500; font-size:0.9rem">Precio Máximo: <strong id="price-val">S/ 50.00</strong></label>
-                <input type="range" id="price-range" min="0" max="50" step="1" value="50">
             </div>
         </div>
         <p class="results-count" id="results-count">Mostrando todo el catálogo disponible</p>
@@ -311,125 +281,236 @@
     <section id="categorias" style="padding-top:0">
         <div class="categories">
             <div class="category active" data-cat="all"><i class="fa-solid fa-border-all" aria-hidden="true"></i>Todos</div>
-            <div class="category" data-cat="otc"><i class="fa-solid fa-capsules" aria-hidden="true"></i>Medicamentos</div>
-            <div class="category" data-cat="personal"><i class="fa-solid fa-pump-soap" aria-hidden="true"></i>Cuidado Personal</div>
+            <div class="category" data-cat="analgesicos"><i class="fa-solid fa-capsules" aria-hidden="true"></i>Analgésicos</div>
+            <div class="category" data-cat="antibioticos"><i class="fa-solid fa-pills" aria-hidden="true"></i>Antibióticos</div>
             <div class="category" data-cat="vitaminas"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>Vitaminas</div>
-            <div class="category" data-cat="auxilios"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i>Primeros Auxilios</div>
+            <div class="category" data-cat="estomacales"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>Estomacales</div>
         </div>
     </section>
 
-    <section id="productos">
+    <!-- DATA MASIVA DE MEDICAMENTOS SIN PRECIOS -->
+    <section id="catalogo">
         <div class="grid" id="products-grid">
             
-            <div class="card" data-category="vitaminas" data-price="29.90">
-                <div class="badge-promo">Alta Demanda</div>
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800" alt="Vitaminas Multivitamínicas" loading="lazy">
+            <!-- Analgésicos y Antiinflamatorios -->
+            <div class="card" data-category="analgesicos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
+                    <span class="badge-cat">Analgésico</span>
                 </div>
-                <div class="content">
-                    <h3>Vitaminas Multivitamínicas</h3>
-                    <p>Suplemento diario completo de alta concentración para mejorar defensas.</p>
-                    <div class="price-row">
-                        <div class="price">S/ 29.90</div>
-                    </div>
-                    <button class="add-cart-btn" onclick="addToCart('Vitaminas Multivitamínicas', 29.90, this)">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir a Lista / Reservar
-                    </button>
-                </div>
+                <h3>Paracetamol 500mg</h3>
+                <p>Analgésico y antipirético de uso frecuente para dolores leves o moderados y fiebre.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Paracetamol 500mg', 'Analgésico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
             </div>
 
-            <div class="card" data-category="auxilios" data-price="8.90">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800" alt="Alcohol Antiséptico" loading="lazy">
+            <div class="card" data-category="analgesicos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
+                    <span class="badge-cat">Analgésico</span>
                 </div>
-                <div class="content">
-                    <h3>Alcohol Antiséptico 70°</h3>
-                    <p>Uso externo medicinal purificado para desinfección sanitaria.</p>
-                    <div class="price-row">
-                        <div class="price">S/ 8.90</div>
-                    </div>
-                    <button class="add-cart-btn" onclick="addToCart('Alcohol Antiséptico 70°', 8.90, this)">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir a Lista / Reservar
-                    </button>
-                </div>
+                <h3>Ibuprofeno 400mg</h3>
+                <p>Antiinflamatorio no esteroideo indicado para dolores musculares, inflamación y fiebre.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Ibuprofeno 400mg', 'Analgésico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
             </div>
 
-            <div class="card" data-category="auxilios" data-price="24.90">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Kit de Primeros Auxilios" loading="lazy">
+            <div class="card" data-category="analgesicos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
+                    <span class="badge-cat">Analgésico</span>
                 </div>
-                <div class="content">
-                    <h3>Kit de Primeros Auxilios Pro</h3>
-                    <p>Estuche completo semirrígido ideal para respuesta rápida en hogares.</p>
-                    <div class="price-row">
-                        <div class="price">S/ 24.90</div>
-                    </div>
-                    <button class="add-cart-btn" onclick="addToCart('Kit de Primeros Auxilios Pro', 24.90, this)">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir a Lista / Reservar
-                    </button>
+                <h3>Naproxeno 550mg</h3>
+                <p>Analgésico antiinflamatorio potente para dolores articulares, musculares o migrañas.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Naproxeno 550mg', 'Analgésico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <div class="card" data-category="analgesicos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-capsules"></i></div>
+                    <span class="badge-cat">Analgésico</span>
                 </div>
+                <h3>Ketorolaco 10mg</h3>
+                <p>Alivio temporal de dolor agudo de moderada a fuerte intensidad.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Ketorolaco 10mg', 'Analgésico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <!-- Antibióticos -->
+            <div class="card" data-category="antibioticos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
+                    <span class="badge-cat">Antibiótico</span>
+                </div>
+                <h3>Amoxicilina 500mg</h3>
+                <p>Antibiótico betalactámico de amplio espectro para infecciones bacterianas (Requiere receta).</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Amoxicilina 500mg', 'Antibiótico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <div class="card" data-category="antibioticos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
+                    <span class="badge-cat">Antibiótico</span>
+                </div>
+                <h3>Azitromicina 500mg</h3>
+                <p>Antibiótico macrólido indicado para infecciones de vías respiratorias (Requiere receta).</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Azitromicina 500mg', 'Antibiótico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <div class="card" data-category="antibioticos">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
+                    <span class="badge-cat">Antibiótico</span>
+                </div>
+                <h3>Ciprofloxacino 500mg</h3>
+                <p>Antibiótico fluoroquinolona para infecciones bacterianas específicas (Requiere receta).</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Ciprofloxacino 500mg', 'Antibiótico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <!-- Vitaminas -->
+            <div class="card" data-category="vitaminas">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <span class="badge-cat">Vitamina</span>
+                </div>
+                <h3>Vitamina C 1000mg</h3>
+                <p>Suplemento antioxidante de refuerzo para el sistema inmunológico.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Vitamina C 1000mg', 'Vitamina', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <div class="card" data-category="vitaminas">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <span class="badge-cat">Vitamina</span>
+                </div>
+                <h3>Complejo B Cápsulas</h3>
+                <p>Vitaminas esenciales para el correcto funcionamiento del sistema nervioso y energía.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Complejo B Cápsulas', 'Vitamina', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <div class="card" data-category="vitaminas">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <span class="badge-cat">Vitamina</span>
+                </div>
+                <h3>Vitamina D3 2000 UI</h3>
+                <p>Apoya la absorción de calcio y la salud ósea e inmunológica.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Vitamina D3 2000 UI', 'Vitamina', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <!-- Estomacales -->
+            <div class="card" data-category="estomacales">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="badge-cat">Gástrico</span>
+                </div>
+                <h3>Omeprazol 20mg</h3>
+                <p>Inhibidor de la bomba de protones para gastritis, acidez y reflujo gástrico.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Omeprazol 20mg', 'Gástrico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
+            </div>
+
+            <div class="card" data-category="estomacales">
+                <div class="card-top">
+                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="badge-cat">Gástrico</span>
+                </div>
+                <h3>Antiespasmódico / Hioscina</h3>
+                <p>Alivio de cólicos estomacales, intestinales y espasmos digestivos.</p>
+                <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                <button class="add-cart-btn" onclick="addToCart('Antiespasmódico / Hioscina', 'Gástrico', this)">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
+                </button>
             </div>
 
             <div class="no-results" id="no-results-msg">
                 <i class="fa-solid fa-magnifying-glass-minus" style="font-size:2.5rem; color:var(--primary); margin-bottom:10px" aria-hidden="true"></i>
-                <p>No se encontraron medicamentos bajo esos criterios de búsqueda.</p>
+                <p>No se encontró el medicamento buscado en la base de datos.</p>
             </div>
 
         </div>
     </section>
 
+    <!-- CONSULTA PERSONALIZADA -->
     <section id="consulta-receta">
         <div class="prescription-box">
-            <h2><i class="fa-solid fa-comment-medical" aria-hidden="true"></i> ¿Buscas otro medicamento o receta?</h2>
-            <p>Escríbenos directamente por WhatsApp para consultar stock específico, precios o apartar medicamentos con receta médica para retirar en local.</p>
-            <a href="https://wa.me/51999999999?text=Hola,%20deseo%20consultar%20el%20precio%20y%20stock%20de%20un%20medicamento%20específico." target="_blank" rel="noopener" class="btn-prescription">
+            <h2><i class="fa-solid fa-comment-medical" aria-hidden="true"></i> ¿No encuentras tu medicamento en la lista?</h2>
+            <p>Escríbenos directamente por WhatsApp para consultar cotizaciones, disponibilidad exacta o enviar una foto de tu receta médica.</p>
+            <a href="https://wa.me/51999999999?text=Hola,%20busco%20un%20medicamento%20que%20no%20aparece%20en%20su%20web." target="_blank" rel="noopener" class="btn-prescription">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp
             </a>
         </div>
     </section>
 
+    <!-- FAQS -->
     <section id="faqs" style="padding-top:20px;">
         <div class="title">
             <h2>Preguntas Frecuentes</h2>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Cómo funciona la separación de medicamentos? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
-            <div class="faq-answer">Seleccionas los productos en tu lista, completas tus datos y envías el mensaje a nuestro WhatsApp. Te confirmaremos la separación inmediata para que pases a recogerlos por el local de Farma Guema.</div>
+            <div class="faq-question">¿Cómo me informan los precios de mi lista? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+            <div class="faq-answer">Al armar tu lista y enviarla por WhatsApp, un farmacéutico de Farma Guema te responderá de inmediato con la cotización detallada de cada producto y las opciones de descuento o genéricos disponibles.</div>
         </div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Puedo pagar adelantado con código QR? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
-            <div class="faq-answer">Sí. Al enviar tu lista de reserva, puedes solicitar nuestro código QR (Yape/Plin o banca móvil) para cancelar de forma digital antes de retirar tus productos en ventanilla.</div>
+            <div class="faq-question">¿Cómo se realiza el pago por QR? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+            <div class="faq-answer">Una vez confirmada tu reserva y el monto total por WhatsApp, te compartiremos nuestro código QR (Yape, Plin o banca móvil) para que realices el pago y pases a retirar tu pedido sin esperas.</div>
         </div>
     </section>
 
+    <!-- SIDEBAR DE LISTA / RESERVA -->
     <div class="cart-overlay" id="cart-overlay"></div>
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
-            <h2><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Tu Lista de Reserva</h2>
+            <h2><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Tu Lista de Consulta</h2>
             <button class="close-cart" id="close-cart-btn" aria-label="Cerrar">&times;</button>
         </div>
         
         <div class="cart-items-container" id="cart-items-wrapper"></div>
 
         <div class="cart-form-container">
-            <div class="cart-form-title"><i class="fa-solid fa-user-check" aria-hidden="true"></i> Datos para el recojo en local</div>
+            <div class="cart-form-title"><i class="fa-solid fa-user-check" aria-hidden="true"></i> Datos de contacto y pago</div>
             <div class="form-grid">
                 <input type="text" id="cust-name" placeholder="Tu Nombre y Apellido" class="form-input" required>
-                <select id="cust-payment" class="form-input" aria-label="Método de pago o recojo">
-                    <option value="Pago por Código QR (Yape/Plin)">Pago adelantado vía Código QR</option>
-                    <option value="Pago en efectivo al recojo en local">Pago en efectivo al recoger en local</option>
-                    <option value="Pago con tarjeta en local">Pago con tarjeta POS en local</option>
+                <select id="cust-payment" class="form-input" aria-label="Forma de pago">
+                    <option value="Deseo pagar adelantado con QR (Yape/Plin)">Pagar con Código QR (Yape/Plin)</option>
+                    <option value="Pago en efectivo al recoger en local">Pago en efectivo al recoger</option>
+                    <option value="Pago con tarjeta POS en local">Pago con tarjeta POS en local</option>
                 </select>
             </div>
         </div>
 
         <div class="cart-footer">
-            <div class="total-main">
-                <span>Total estimado:</span>
-                <span id="cart-total-val">S/ 0.00</span>
-            </div>
             <button class="checkout-btn" onclick="sendCartToWhatsApp()">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enviar Lista y Pagar/Separar
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enviar Lista para Cotizar y Separar
             </button>
         </div>
     </div>
@@ -476,12 +557,12 @@
         document.getElementById('close-cart-btn').addEventListener('click', closeCart);
         document.getElementById('cart-overlay').addEventListener('click', closeCart);
 
-        function addToCart(name, price, buttonNode) {
+        function addToCart(name, category, buttonNode) {
             const existingItem = cart.find(item => item.name === name);
             if(existingItem) {
                 if(existingItem.qty < 99) existingItem.qty += 1;
             } else {
-                cart.push({ name, price, qty: 1 });
+                cart.push({ name, category, qty: 1 });
             }
             saveAndUpdateCart();
             
@@ -514,18 +595,15 @@
         function updateCartUI() {
             const wrapper = document.getElementById('cart-items-wrapper');
             const badge = document.getElementById('cart-badge');
-            const totalVal = document.getElementById('cart-total-val');
             
             wrapper.innerHTML = "";
-            let subtotal = 0;
             let count = 0;
 
             if (cart.length === 0) {
-                wrapper.innerHTML = `<p style="text-align:center; color:#64748b; margin-top:40px">Tu lista de reserva está vacía.</p>`;
+                wrapper.innerHTML = `<p style="text-align:center; color:#64748b; margin-top:40px">Tu lista de consulta está vacía. Agrega medicamentos del catálogo.</p>`;
             }
 
             cart.forEach(item => {
-                subtotal += item.price * item.qty;
                 count += item.qty;
 
                 const itemEl = document.createElement('div');
@@ -533,7 +611,7 @@
                 itemEl.innerHTML = `
                     <div class="cart-item-info">
                         <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">S/ ${item.price.toFixed(2)}</div>
+                        <div class="cart-item-sub">Categoría: ${item.category}</div>
                     </div>
                     <div class="cart-item-controls">
                         <button class="cart-qty-btn" onclick="modifyQty('${item.name}', -1)">-</button>
@@ -545,7 +623,6 @@
             });
 
             badge.textContent = count;
-            totalVal.textContent = `S/ ${subtotal.toFixed(2)}`;
         }
 
         function sanitizeInput(str) {
@@ -554,7 +631,7 @@
 
         function sendCartToWhatsApp() {
             if(cart.length === 0) {
-                alert("Por favor, añade al menos un producto para consultar o separar.");
+                alert("Por favor, agrega al menos un medicamento a tu lista para consultar.");
                 return;
             }
 
@@ -563,37 +640,32 @@
             const name = sanitizeInput(rawName);
 
             if(!name) {
-                alert("Por favor ingresa tu nombre para procesar la reserva.");
+                alert("Por favor ingresa tu nombre para enviar la consulta.");
                 return;
             }
 
-            let message = "💊 *CONSULTA / RESERVA - FARMA GUEMA*\n";
+            let message = "💊 *LISTA DE CONSULTA Y RESERVA - FARMA GUEMA*\n";
             message += "===================================\n\n";
             message += `👤 *CLIENTE:* ${name}\n`;
-            message += `💳 *MÉTODO SELECCIONADO:* ${payment}\n\n`;
+            message += `💳 *MÉTODO DE PAGO / RETIRO:* ${payment}\n\n`;
             message += "===================================\n";
-            message += "📦 *PRODUCTOS SOLICITADOS:* \n\n";
+            message += "📋 *MEDICAMENTOS SOLICITADOS:* \n\n";
             
-            let subtotal = 0;
             cart.forEach((item, index) => {
-                let sub = item.price * item.qty;
-                subtotal += sub;
                 message += `*${index + 1}.* ${item.name}\n`;
-                message += `   » Cantidad: ${item.qty}\n`;
-                message += `   » Subtotal: S/ ${sub.toFixed(2)}\n\n`;
+                message += `   » Cantidad: ${item.qty} unidad(es)\n\n`;
             });
 
             message += "===================================\n";
-            message += `💰 *TOTAL ESTIMADO: S/ ${subtotal.toFixed(2)}*\n\n`;
-            message += "Hola, deseo confirmar el stock de estos productos, realizar el pago (si elegí QR) o separarlos para pasar a recogerlos por el local. ¡Gracias!";
+            message += "Hola, deseo consultar los precios de estos medicamentos, confirmar stock, realizar el pago (si elegí QR) y separarlos para recogerlos en su local. ¡Gracias!";
 
             const encodedMessage = encodeURIComponent(message);
-            const phoneNumber = "51999999999"; 
+            const phoneNumber = "51999999999"; // Reemplaza con tu número de WhatsApp
             
             window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 
             setTimeout(() => {
-                if(confirm("¿Se abrió WhatsApp correctamente? Pulsa Aceptar para limpiar tu lista de selección actual.")) {
+                if(confirm("¿Se abrió WhatsApp correctamente? Pulsa Aceptar para limpiar tu lista de selección.")) {
                     cart = [];
                     document.getElementById('cust-name').value = "";
                     saveAndUpdateCart();
@@ -603,8 +675,6 @@
         }
 
         const searchInput = document.getElementById('search-input');
-        const priceRange = document.getElementById('price-range');
-        const priceVal = document.getElementById('price-val');
         const cards = document.querySelectorAll('.card');
         const categories = document.querySelectorAll('.category');
         const noResultsMsg = document.getElementById('no-results-msg');
@@ -621,26 +691,19 @@
             filterProducts();
         }
 
-        priceRange.addEventListener('input', () => {
-            priceVal.textContent = `S/ ${parseFloat(priceRange.value).toFixed(2)}`;
-            filterProducts();
-        });
-
         function filterProducts() {
             const searchText = cleanText(searchInput.value.trim());
-            const maxPrice = parseFloat(priceRange.value);
             let visibleCount = 0;
 
             cards.forEach(card => {
                 const productName = cleanText(card.querySelector('h3').textContent);
+                const productDesc = cleanText(card.querySelector('p').textContent);
                 const productCategory = card.getAttribute('data-category');
-                const productPrice = parseFloat(card.getAttribute('data-price'));
 
-                const matchesSearch = productName.includes(searchText);
+                const matchesSearch = productName.includes(searchText) || productDesc.includes(searchText);
                 const matchesCategory = (activeCategory === 'all' || productCategory === activeCategory);
-                const matchesPrice = productPrice <= maxPrice;
 
-                if (matchesSearch && matchesCategory && matchesPrice) {
+                if (matchesSearch && matchesCategory) {
                     card.style.display = "flex";
                     visibleCount++;
                 } else {
@@ -648,8 +711,8 @@
                 }
             });
 
-            resultsCount.textContent = (searchText !== "" || activeCategory !== 'all' || maxPrice < 50) 
-                ? `Se encontraron ${visibleCount} producto(s) disponibles`
+            resultsCount.textContent = (searchText !== "" || activeCategory !== 'all') 
+                ? `Se encontraron ${visibleCount} medicamento(s)`
                 : "Mostrando todo el catálogo disponible";
 
             noResultsMsg.style.display = (visibleCount === 0) ? "block" : "none";
