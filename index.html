@@ -132,28 +132,48 @@
         .category.active { background: var(--dark); border-color: var(--dark); color: white; }
         .category.active i { color: var(--primary); }
 
-        /* --- PRODUCTOS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        /* --- PRODUCTOS / TARJETAS MODERNAS MEJORADAS --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
         .card {
-            background: white; border-radius: 20px; overflow: hidden;
+            background: var(--card-bg); border-radius: 22px; overflow: hidden;
             border: 1px solid var(--gray-border); display: flex; flex-direction: column;
-            transition: all 0.3s ease; position: relative; padding: 20px;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); position: relative; padding: 22px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
         }
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-premium); }
-        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-        .card-icon { width: 45px; height: 45px; background: rgba(14, 165, 233, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2rem; }
-        .badge-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; background: var(--light); color: #64748b; border-radius: 20px; }
+        .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-premium); border-color: rgba(14, 165, 233, 0.3); }
         
-        .card h3 { font-size: 1.05rem; color: var(--dark); margin-bottom: 6px; font-weight: 700; }
-        .card p { font-size: 0.85rem; color: #64748b; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
-        .consult-price-text { font-size: 0.8rem; color: var(--secondary); font-weight: 600; margin-bottom: 12px; }
+        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .card-icon { 
+            width: 50px; height: 50px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.2)); 
+            border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.3rem; 
+            transition: transform 0.3s;
+        }
+        .card:hover .card-icon { transform: scale(1.08) rotate(5deg); }
+        
+        .badge-cat { 
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 5px 12px; 
+            background: var(--light); color: var(--primary-dark); border-radius: 30px; letter-spacing: 0.5px;
+            border: 1px solid rgba(14, 165, 233, 0.1);
+        }
+        
+        .card h3 { font-size: 1.1rem; color: var(--dark); margin-bottom: 8px; font-weight: 700; letter-spacing: -0.3px; }
+        .card p { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; line-height: 1.5; flex-grow: 1; }
+        
+        .card-footer-info {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+            padding-top: 10px; border-top: 1px dashed var(--gray-border);
+        }
+        .consult-price-text { font-size: 0.78rem; color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+        .stock-indicator { font-size: 0.72rem; color: #64748b; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+        .stock-indicator::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; display: inline-block; }
 
         .add-cart-btn {
-            width: 100%; padding: 12px; background: var(--primary); color: white; border: none;
-            border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s;
+            width: 100%; padding: 13px; background: var(--primary); color: white; border: none;
+            border-radius: 14px; font-weight: 600; cursor: pointer; transition: all 0.25s ease;
             display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
         }
-        .add-cart-btn:hover { background: var(--primary-dark); }
+        .add-cart-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(14, 165, 233, 0.3); }
 
         .results-count { text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 15px; }
 
@@ -161,6 +181,28 @@
         .pagination-container { display: flex; justify-content: center; gap: 8px; margin-top: 35px; flex-wrap: wrap; }
         .page-btn { background: white; border: 1px solid var(--gray-border); padding: 8px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; color: var(--text); transition: 0.2s; }
         .page-btn:hover, .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* --- SECCIÓN PREGUNTAS FRECUENTES (FAQS) MEJORADA --- */
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+        .faq-item {
+            background: white; border: 1px solid var(--gray-border); border-radius: 16px;
+            overflow: hidden; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+        .faq-item:hover { border-color: rgba(14, 165, 233, 0.4); }
+        .faq-question {
+            padding: 20px 24px; font-size: 1.02rem; font-weight: 600; color: var(--dark);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 15px;
+            user-select: none;
+        }
+        .faq-question i { color: var(--primary); transition: transform 0.3s ease; font-size: 0.9rem; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; padding: 0 24px; font-size: 0.92rem; color: #64748b;
+            line-height: 1.6; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-item.active { border-color: var(--primary); box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.08); }
+        .faq-item.active .faq-question { color: var(--primary); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-item.active .faq-answer { max-height: 200px; padding: 0 24px 22px 24px; }
 
         /* --- CARRITO / PANEL LATERAL --- */
         .cart-sidebar {
@@ -216,7 +258,38 @@
         section { max-width: 1200px; margin: auto; padding: 60px 20px; }
         .title { text-align: center; margin-bottom: 40px; }
         .title h2 { font-size: 2.2rem; color: var(--dark); font-weight: 700; }
-        footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 40px 20px; font-size: 0.9rem; }
+
+        /* --- FOOTER MODERNO --- */
+        footer {
+            background: var(--dark); color: #94a3b8; padding: 70px 20px 30px 20px; font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .footer-grid {
+            max-width: 1200px; margin: 0 auto 50px auto; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px;
+        }
+        .footer-col h3 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .footer-col h3 span { color: var(--primary); }
+        .footer-col p { line-height: 1.6; margin-bottom: 20px; font-size: 0.9rem; color: #94a3b8; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: var(--primary); transform: translateX(4px); }
+        .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
+        .social-icon {
+            width: 38px; height: 38px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; color: white; text-decoration: none;
+            transition: 0.2s; border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-icon:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
+        
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; font-size: 0.9rem; }
+        .footer-contact-item i { color: var(--primary); margin-top: 4px; }
+        
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; font-size: 0.85rem;
+        }
+        .payment-badges { display: flex; gap: 10px; font-size: 1.2rem; color: #cbd5e1; }
 
         @media(max-width: 768px) {
             nav { padding: 0 20px; }
@@ -230,6 +303,7 @@
             nav .nav-links a { display: block; padding: 15px 20px; border-bottom: 1px solid var(--gray-border); }
             .cart-sidebar { max-width: 100%; right: -100%; }
             header h1 { font-size: 2.4rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -250,6 +324,7 @@
             <li><a href="#buscar">Buscador</a></li>
             <li><a href="#categorias">Categorías</a></li>
             <li><a href="#catalogo">Medicamentos</a></li>
+            <li><a href="#faqs">Preguntas</a></li>
             <li><a href="#consulta-receta">Contacto</a></li>
         </ul>
         <button class="cart-nav-btn" id="open-cart-btn" aria-label="Ver lista de consulta">
@@ -295,10 +370,10 @@
         </div>
     </section>
 
-    <!-- CATALOGO CON PAGINACIÓN -->
+    <!-- CATALOGO CON PAGINACIÓN Y TARJETAS MEJORADAS -->
     <section id="catalogo">
         <div class="grid" id="products-grid">
-            <!-- Se inyectarán dinámicamente por bloques -->
+            <!-- Se inyectarán dinámicamente con el nuevo diseño de tarjetas -->
         </div>
         <div class="pagination-container" id="pagination-container">
             <!-- Botones de paginación -->
@@ -316,14 +391,29 @@
         </div>
     </section>
 
-    <!-- FAqs -->
-    <section id="faqs" style="padding-top:20px;">
+    <!-- SECCIÓN PREGUNTAS FRECUENTES (FAqs) MEJORADA -->
+    <section id="faqs">
         <div class="title">
             <h2>Preguntas Frecuentes</h2>
+            <p style="color: #64748b; font-size: 0.95rem; margin-top: 5px;">Resolvemos tus dudas principales sobre nuestro servicio de consulta y reserva</p>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">¿Por qué los medicamentos no muestran precios? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
-            <div class="faq-answer">Manejamos diferentes marcas y laboratorios cuyos precios varían. Al armar tu lista, te cotizamos exactamente las mejores opciones económicas disponibles.</div>
+        <div class="faq-container">
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Por qué los medicamentos no muestran precios directos en la web? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+                <div class="faq-answer">Manejamos diferentes marcas, genéricos y laboratorios cuyos precios varían constantemente. Al armar tu lista y enviarla, te cotizamos exactamente las mejores opciones económicas y de calidad disponibles en nuestro inventario al instante.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Cómo funciona el proceso de reservar o cotizar? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+                <div class="faq-answer">Agregas los productos que necesitas a tu lista virtual, ingresas tu nombre, seleccionas cómo prefieres pagar y haces clic en enviar. Esto abrirá un chat directo con nuestro equipo en WhatsApp con todo tu requerimiento ordenado para agilizar la atención.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Realizan envíos a domicilio o solo recojo en local? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+                <div class="faq-answer">Principalmente preparamos los pedidos para recojo rápido en nuestro establecimiento, pero al cotizar por WhatsApp puedes consultar si contamos con motorizado disponible para entrega en tu zona.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Necesito receta médica para todos los productos? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></div>
+                <div class="faq-answer">Los medicamentos de venta libre (como analgésicos comunes o vitaminas) no la requieren. Sin embargo, para antibióticos o medicamentos especializados, te solicitaremos la receta médica digitalizada al momento de concretar la atención por norma de salud.</div>
+            </div>
         </div>
     </section>
 
@@ -356,8 +446,55 @@
         </div>
     </div>
 
+    <!-- FOOTER MODERNO -->
     <footer>
-        <p>&copy; 2026 Botica Farma Guema. Todos los derechos reservados.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3><i class="fa-solid fa-pills"></i> Farma<span>Guema</span></h3>
+                <p>Tu botica de confianza comprometida con la salud y bienestar de la comunidad. Catálogo masivo de medicamentos y atención farmacéutica personalizada.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#buscar"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> Buscador de Medicamentos</a></li>
+                    <li><a href="#categorias"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> Categorías Principales</a></li>
+                    <li><a href="#catalogo"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> Catálogo Completo</a></li>
+                    <li><a href="#faqs"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> Preguntas Frecuentes</a></li>
+                    <li><a href="#consulta-receta"><i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i> Enviar Receta Médica</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contacto Directo</h3>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Av. Principal de la Salud #123, Local Comercial - Atención Presencial</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Central Telefónica: +51 999 999 999</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Horario: Lunes a Sábado de 8:00 AM a 9:00 PM</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Botica Farma Guema. Todos los derechos reservados.</p>
+            <div class="payment-badges" title="Métodos de pago compatibles">
+                <i class="fa-solid fa-qrcode" title="Yape / Plin"></i>
+                <i class="fa-solid fa-money-bill-wave" title="Efectivo"></i>
+                <i class="fa-solid fa-credit-card" title="Tarjetas de Crédito/Débito"></i>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -551,7 +688,10 @@
                     </div>
                     <h3>${med.name}</h3>
                     <p>${med.desc}</p>
-                    <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio en tienda/WhatsApp</div>
+                    <div class="card-footer-info">
+                        <div class="consult-price-text"><i class="fa-solid fa-tag"></i> Consultar precio</div>
+                        <div class="stock-indicator">Disponible en stock</div>
+                    </div>
                     <button class="add-cart-btn" onclick="addToCart('${med.name.replace(/'/g, "\\'")}', '${med.badge}', this)">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar a Lista / Reservar
                     </button>
@@ -561,7 +701,6 @@
 
             document.getElementById('results-count').textContent = `Mostrando ${start + 1}-${Math.min(end, list.length)} de ${list.length} medicamentos`;
 
-            // Construir botones de paginación si hay más de una página
             if (totalPages > 1) {
                 for (let i = 1; i <= totalPages; i++) {
                     const btn = document.createElement('button');
@@ -709,7 +848,7 @@
         }
 
         function filterProducts() {
-            currentPage = 1; // Reiniciar a la página 1 al filtrar
+            currentPage = 1;
             const searchText = cleanText(searchInput.value.trim());
 
             const filtered = databaseMedicines.filter(med => {
